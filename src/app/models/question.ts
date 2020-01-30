@@ -5,6 +5,7 @@
 export class Question {
     id: string;
     num: number;
+    section_num: number;
     section: string;
     question: string;
     written_ans: boolean;
