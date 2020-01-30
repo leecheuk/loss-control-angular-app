@@ -8,6 +8,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { QuestionaireComponent } from './views/questionaire/questionaire.component';
 import { ReviewComponent } from './views/review/review.component';
 import { ReportComponent } from './views/report/report.component';
+import { LayoutComponent } from './components/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ReportComponent } from './views/report/report.component';
     NavbarComponent,
     QuestionaireComponent,
     ReviewComponent,
-    ReportComponent
+    ReportComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
