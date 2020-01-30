@@ -8,9 +8,20 @@
 
 body {
     margin: 0;
+    height: 100vh;
+    width: 100vw;
 }
 
 a {
     text-decoration: none;
     color: inherit;
+}
+
+#root {
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+}
+.content-main {
+    flex: 1;
 }
