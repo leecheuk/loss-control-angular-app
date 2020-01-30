@@ -30,10 +30,12 @@
     line-height: 35px;
     font-size: 25px;
 }
+.home-title, .home-subtitle, .btn-action {
+    margin-left: 15%;
+}
 .btn-action {
     padding: 15px 50px;
     font-size: 16px;
-    margin-left: 30px;
     margin-top: 15px;
     background: #dc4040;
     border: none;
@@ -44,16 +46,21 @@
     outline: none;
     cursor: pointer;
     transition: all 100ms ease;
+    margin-left: calc(15% + 30px);
 }
 .btn-action:hover {
     background: #df3030;
     color: #fafafa;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 680px) {
     .home-title, .home-subtitle {
         max-width: 100%;
     }
     .btn-action {
+        margin-left: 30px;
+    }
+    .home-title, .home-subtitle {
+        margin-left: 0;
     }
 }
