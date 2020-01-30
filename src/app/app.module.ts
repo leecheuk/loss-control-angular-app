@@ -9,6 +9,7 @@ import { QuestionaireComponent } from './views/questionaire/questionaire.compone
 import { ReviewComponent } from './views/review/review.component';
 import { ReportComponent } from './views/report/report.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LayoutComponent } from './components/layout/layout.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
