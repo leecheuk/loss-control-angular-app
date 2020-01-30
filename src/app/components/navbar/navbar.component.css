@@ -88,3 +88,8 @@
 .navbar-account {
 
 }
+@media (max-width: 700px) {
+    .navbar-links, .navbar-right {
+        display: none;
+    }
+}
