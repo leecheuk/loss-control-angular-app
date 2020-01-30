@@ -30,9 +30,30 @@
     line-height: 35px;
     font-size: 25px;
 }
+.btn-action {
+    padding: 15px 50px;
+    font-size: 16px;
+    margin-left: 30px;
+    margin-top: 15px;
+    background: #dc4040;
+    border: none;
+    color: #FFF;
+    border-radius: 25px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    outline: none;
+    cursor: pointer;
+    transition: all 100ms ease;
+}
+.btn-action:hover {
+    background: #df3030;
+    color: #fafafa;
+}
 
 @media (max-width: 500px) {
     .home-title, .home-subtitle {
         max-width: 100%;
+    }
+    .btn-action {
     }
 }
