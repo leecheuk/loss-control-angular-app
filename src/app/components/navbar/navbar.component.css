@@ -1,0 +1,90 @@
+.navbar-container {
+    height: 56px;
+}
+.navbar {
+    display: flex;
+    background: #FFF;
+    justify-content: space-between;
+    /* max-width: 1200px; */
+    padding: 0 30px;
+    margin: auto;
+    align-items: center;
+    height: 100%;
+    border-bottom: 1px solid #fafafa;
+}
+.navbar-block {
+    display: flex;
+    align-items: center;
+}
+.navbar-logo {
+    font-weight: bold;
+    color: #dc4040;
+    margin: auto;
+    margin-right: 30px;
+    font-size: 20px;
+}
+.navbar-links {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.navbar-links li {
+    list-style: none;
+    display: inline;
+    margin-right: 15px;
+    position: relative;
+    left: 0;
+}
+.navbar-links a {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.navbar-links li a::after, .navbar-account a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 0;
+    width: 100%;
+    background-color: #dc4040;
+    left: 0;
+    transition: height 200ms ease-in;
+}
+.navbar-links li a:hover, .navbar-account a:hover {
+    color: #dc4040;
+}
+.navbar-links li a:hover::after, .navbar-account a:hover::after {
+    height: 4px;
+}
+.navbar-account {
+    position: relative;
+    height: 56px;
+    display: flex;
+    align-items: center;
+}
+.navbar-search input {
+    border: 1px solid #eee;
+    background: #eee;
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin-right: 15px;
+    outline: none;
+    width: 120px;
+    transition: all 250ms ease;
+}
+.navbar-search input:focus {
+    background-color: #fff;
+    border: 1px solid #eee;
+    width: 180px;
+}
+.navbar-search input::placeholder {
+    font-size: 15px;
+    text-align: center;
+}
+.navbar-search input:focus::placeholder {
+    text-align: left;
+}
+.navbar-account {
+
+}
