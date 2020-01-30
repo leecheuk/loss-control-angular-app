@@ -30,3 +30,9 @@
     line-height: 35px;
     font-size: 25px;
 }
+
+@media (max-width: 500px) {
+    .home-title, .home-subtitle {
+        max-width: 100%;
+    }
+}
