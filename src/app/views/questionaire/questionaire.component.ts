@@ -24,15 +24,28 @@ export class QuestionaireComponent implements OnInit {
       checklist: ''
     })))
   })
-  questions;
   section_num = 1;
+  questions = questions.filter((q, i) => q.section_num === this.section_num);
 
   constructor(private fb: FormBuilder) { 
-    this.questions = questions.filter((q, i) => q.section_num === this.section_num);
-    this.section_num = 1;
   }
 
   ngOnInit() {
     this.questionsForm.valueChanges.subscribe(console.log);
+  }
+  ngOnChanges(changes) {
+    console.log(changes.prop)
+  }
+  handleClickNext() {
+    console.log("next")
+    if (this.section_num < 6) {
+      this.section_num += 1;
+      this._getQuestions();
+      document.getElementById('root').scroll(0, 0);
+    }
+
+  }
+  _getQuestions() {
+    this.questions = questions.filter((q, i) => q.section_num === this.section_num);
   }
 }
