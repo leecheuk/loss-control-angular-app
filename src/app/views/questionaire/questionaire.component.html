@@ -2,24 +2,10 @@
     <form [formGroup]="questionForm">
         <h1>{{questions[section_num - 1].section}}</h1>
         <br/>
-        <div class="question" *ngFor="let qs of questions">
-            <div class="question-left">
-                <h3 class="question-title">{{qs.question}}</h3>
-                <mat-form-field *ngIf="qs.written_ans === 'true' || written_ans_yes === 'true' && questionForm.value.yesNo === 'yes'">
-                    <input matInput placeholder="" formControlName="written">
-                </mat-form-field>
-            </div>
-            <div class="question-right">
-                <mat-radio-group aria-labelledby="example-radio-group-label" formControlName="yesNo" class="example-radio-group">
-                    <mat-radio-button class="radio-button" value="yes">
-                        Yes
-                    </mat-radio-button>
-                    <mat-radio-button class="radio-button" value="no">
-                        No
-                    </mat-radio-button>
-                </mat-radio-group>
-            </div>
-        </div>
+        <app-question 
+            [question]="question"
+            [formGroup]="questionForm" 
+            *ngFor="let question of questions"></app-question>
         <button class="btn-action">Next</button>
     </form>
 </app-layout>
