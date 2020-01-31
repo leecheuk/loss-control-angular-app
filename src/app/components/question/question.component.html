@@ -10,6 +10,14 @@
                 *ngIf="question.written_ans_yes === 'true' && controlContainer.control.value.yesNo === 'yes'">
                 <input matInput placeholder="" formControlName="written">
             </mat-form-field>
+            <div class="question-checklist">
+                <div class="question-checklist-item" *ngFor="let item of question.checklist">
+                    <mat-checkbox formControlName="checklist">
+                        {{item}}
+                    </mat-checkbox>
+                </div>
+            </div>
+
         </div>
         <div class="question-right">
             <mat-radio-group aria-labelledby="example-radio-group-label"
