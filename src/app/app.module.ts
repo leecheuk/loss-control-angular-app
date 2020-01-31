@@ -16,6 +16,7 @@ import { ReportComponent } from './views/report/report.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QuestionComponent } from './components/question/question.component';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { QuestionComponent } from './components/question/question.component';
     ReviewComponent,
     ReportComponent,
     LayoutComponent,
-    QuestionComponent
+    QuestionComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule,

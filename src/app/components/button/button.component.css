@@ -1,0 +1,26 @@
+.btn-action {
+    padding: 15px 50px;
+    font-size: 16px;
+    margin-top: 15px;
+    background: #dc4040;
+    border: none;
+    color: #FFF;
+    border-radius: 25px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    outline: none;
+    cursor: pointer;
+    transition: all 100ms ease;
+}
+.btn-action.left {
+    margin-left: calc(30px + 15%);
+}
+@media (max-width: 680px) {
+.btn-action.left {
+    margin-left: 30px;
+}
+}
+.btn-action:hover {
+    background: #df3030;
+    color: #fafafa;
+}

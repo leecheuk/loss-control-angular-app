@@ -46,7 +46,7 @@
     outline: none;
     cursor: pointer;
     transition: all 100ms ease;
-    margin-left: calc(15% + 30px);
+    /* margin-left: calc(15% + 30px); */
 }
 .btn-action:hover {
     background: #df3030;
