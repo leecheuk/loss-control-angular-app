@@ -43,7 +43,13 @@ export class QuestionaireComponent implements OnInit {
       this._getQuestions();
       document.getElementById('root').scroll(0, 0);
     }
-
+  }
+  handleClickBack() {
+    if (this.section_num > 1) {
+      this.section_num -= 1;
+      this._getQuestions();
+      document.getElementById('root').scroll(0, 0);
+    }
   }
   _getQuestions() {
     this.questions = questions.filter((q, i) => q.section_num === this.section_num);

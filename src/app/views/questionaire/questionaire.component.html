@@ -2,11 +2,13 @@
     <form [formGroup]="questionsForm">
         <h1>{{questions[0].section}}</h1>
         <br/>
-            <div>
+        <div>
             <app-question [question]="question" [formGroup]="questionsForm.controls.questions.at(question.num - 1)"
                 *ngFor="let question of questions; let i = index"></app-question>
         </div>
-            <app-button [title]="'Back'" id="btn-back" *ngIf="section_num > 1"></app-button>
+        <div class="btn-group">
+            <app-button [title]="'Back'" id="btn-back" (click)="handleClickBack()" *ngIf="section_num > 1"></app-button>
             <app-button [title]="'Next'" id="btn-next" (click)="handleClickNext()" *ngIf="section_num !== 5"></app-button>
+        </div>
     </form>
 </app-layout>
