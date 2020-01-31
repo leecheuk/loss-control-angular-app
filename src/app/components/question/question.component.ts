@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Question } from 'src/app/models/question';
-import { FormBuilder, ControlContainer } from '@angular/forms';
+import { FormBuilder, ControlContainer, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-question',
@@ -13,6 +13,6 @@ export class QuestionComponent implements OnInit {
   constructor(private controlContainer: ControlContainer) { }
 
   ngOnInit() {
+    console.log(this.controlContainer.control)
   }
-
 }

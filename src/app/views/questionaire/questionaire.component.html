@@ -1,11 +1,11 @@
 <app-layout>
-    <form [formGroup]="questionForm">
+    <form [formGroup]="questionsForm">
         <h1>{{questions[section_num - 1].section}}</h1>
         <br/>
-        <app-question 
-            [question]="question"
-            [formGroup]="questionForm" 
-            *ngFor="let question of questions"></app-question>
+            <div>
+            <app-question [question]="question" [formGroup]="questionsForm.controls.questions.at(i)"
+                *ngFor="let question of questions; let i = index"></app-question>
+        </div>
             <app-button [title]="'Next'" ></app-button>
     </form>
 </app-layout>

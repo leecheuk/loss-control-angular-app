@@ -9,10 +9,21 @@ import questions from '../../seed/data.json';
 })
 export class QuestionaireComponent implements OnInit {
   questionForm = this.fb.group({
+    id: '',
+    num: '',
     yesNo: '',
     written: '',
     checklist: ''
-  });
+  })
+  questionsForm = this.fb.group({
+    questions: this.fb.array(questions.map(q => this.fb.group({
+      id: q.id,
+      num: q.num,
+      yesNo: '',
+      written: '',
+      checklist: ''
+    })))
+  })
   questions;
   section_num = 1;
 
@@ -22,6 +33,6 @@ export class QuestionaireComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.questionForm.valueChanges.subscribe(console.log);
+    this.questionsForm.valueChanges.subscribe(console.log);
   }
 }
