@@ -13,6 +13,5 @@ export class QuestionComponent implements OnInit {
   constructor(private controlContainer: ControlContainer) { }
 
   ngOnInit() {
-    console.log(this.controlContainer.control)
   }
 }
