@@ -21,7 +21,7 @@ export class QuestionaireComponent implements OnInit {
       num: q.num,
       yesNo: '',
       written: '',
-      checklist: ''
+      checklist: this.fb.array(Array(q.checklist.length).fill(false))
     })))
   })
   section_num = 1;
@@ -33,11 +33,7 @@ export class QuestionaireComponent implements OnInit {
   ngOnInit() {
     this.questionsForm.valueChanges.subscribe(console.log);
   }
-  ngOnChanges(changes) {
-    console.log(changes.prop)
-  }
   handleClickNext() {
-    console.log("next")
     if (this.section_num < 5) {
       this.section_num += 1;
       this._getQuestions();

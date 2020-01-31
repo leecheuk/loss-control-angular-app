@@ -10,9 +10,9 @@
                 *ngIf="question.written_ans_yes === 'true' && controlContainer.control.value.yesNo === 'yes'">
                 <input matInput placeholder="" formControlName="written">
             </mat-form-field>
-            <div class="question-checklist">
-                <div class="question-checklist-item" *ngFor="let item of question.checklist">
-                    <mat-checkbox formControlName="checklist">
+            <div class="question-checklist" *ngIf="controlContainer.control.value.yesNo === 'yes' && question.checklist.length > 0">
+                <div class="question-checklist-item" *ngFor="let item of question.checklist; index as i">
+                    <mat-checkbox [formControl]="controlContainer.control.controls.checklist.at(i)">
                         {{item}}
                     </mat-checkbox>
                 </div>
