@@ -3,14 +3,18 @@
         <div class="question-left">
             <h3 class="question-title">{{question.num}}. {{question.question}}</h3>
             <mat-form-field
-                *ngIf="question.written_ans === 'true' && (question.written_ans_yes === 'true' && controlContainer.control.value.yesNo === 'yes')">
+                *ngIf="question.written_ans === 'true' && question.written_ans_yes === 'false'">
+                <input matInput placeholder="" formControlName="written">
+            </mat-form-field>
+            <mat-form-field
+                *ngIf="question.written_ans_yes === 'true' && controlContainer.control.value.yesNo === 'yes'">
                 <input matInput placeholder="" formControlName="written">
             </mat-form-field>
         </div>
         <div class="question-right">
             <mat-radio-group aria-labelledby="example-radio-group-label"
                 [formControl]="controlContainer.control.controls.yesNo"
-                class="example-radio-group">
+                class="example-radio-group" *ngIf="question.yes_no === 'true'">
                 <mat-radio-button class="radio-button" value="yes">
                     Yes
                 </mat-radio-button>
