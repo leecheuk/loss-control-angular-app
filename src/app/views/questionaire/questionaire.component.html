@@ -6,6 +6,6 @@
             <app-question [question]="question" [formGroup]="questionsForm.controls.questions.at(i)"
                 *ngFor="let question of questions; let i = index"></app-question>
         </div>
-            <app-button [title]="'Next'" ></app-button>
+            <app-button [title]="'Next'" id="btn-next"></app-button>
     </form>
 </app-layout>
