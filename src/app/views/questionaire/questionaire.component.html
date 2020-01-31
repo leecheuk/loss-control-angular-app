@@ -1,6 +1,6 @@
 <app-layout>
     <form [formGroup]="questionsForm">
-        <h1>{{questions[section_num - 1].section}}</h1>
+        <h1>{{questions[0].section}}</h1>
         <br/>
             <div>
             <app-question [question]="question" [formGroup]="questionsForm.controls.questions.at(i)"

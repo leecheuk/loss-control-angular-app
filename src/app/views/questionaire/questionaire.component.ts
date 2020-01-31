@@ -38,7 +38,7 @@ export class QuestionaireComponent implements OnInit {
   }
   handleClickNext() {
     console.log("next")
-    if (this.section_num < 6) {
+    if (this.section_num < 5) {
       this.section_num += 1;
       this._getQuestions();
       document.getElementById('root').scroll(0, 0);
