@@ -6,9 +6,12 @@
         [question_done]="questions_done"
         [total_question_count]="total_question_count"
         [section_titles]="section_titles"
+        (stickyChanged)="handleSticky($event)"
         ></app-progress>
     <form [formGroup]="questionsForm">
-        <h1>{{questions[0].section}}</h1>
+        <h1 
+            class="questionaire-title"
+            [style.marginTop]="sticky ? '180px' : ''">{{questions[0].section}}</h1>
         <br/>
         <div>
             <app-question 

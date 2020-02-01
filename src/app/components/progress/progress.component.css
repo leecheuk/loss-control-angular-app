@@ -6,15 +6,24 @@
     align-items: center;
 }
 .progress-banner.sticky {
-    background-color: #fde876;
-        /* background-color: #fafafa; */
+    /* background-color: #fde876; */
+    background-color: #fafafa;
+    box-shadow: 1px 0 15px 3px #999;;
     position: fixed;
     width: 100%;
     left: 0;
     top: 0;
     z-index: 1;
-    opacity: 1;
+    opacity: 0;
     align-items: end;
+    height: 0;
+    animation: slide-down 200ms ease-in forwards;
+}
+@keyframes slide-down {
+    to {
+        opacity: 1;
+        height: 60px;
+    }
 }
 .progress-banner.sticky .progress-group {
     margin-left: 15px;

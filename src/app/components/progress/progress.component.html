@@ -1,5 +1,6 @@
-<div class="progress-banner">
-    <p class="progress-text">Progress {{total_progress}}</p>
+<div class="progress-banner" [class.sticky]="sticky">
+    <p class="progress-text">
+        {{sticky ? section_titles[section_cur - 1] + ' (' + total_progress + ')' : 'Progress ' + total_progress}}</p>
     <div class="progress-group">
         <div class="progress" *ngFor="let i of loop_arr; index as j">
             <div 

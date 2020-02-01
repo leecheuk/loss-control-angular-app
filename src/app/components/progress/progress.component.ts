@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-progress',
@@ -13,18 +13,38 @@ export class ProgressComponent implements OnInit {
   @Input() question_done: number;
   @Input() section_titles: string[];
   @Input() total_question_count: number;
+  @Output() stickyChanged: EventEmitter<boolean> = new EventEmitter();
   loop_arr: number[]; // array holder for loops
   progress: string;
   total_progress: string;
   hover_section: number;
+  sticky: boolean; // which sticky state of banner
 
   constructor() { 
 
   }
-
-  ngOnInit() {
+  // can't use HostListener, material angular conflicting it?
+  onScroll(e) {
+    let el = document.getElementById('root');
+    let w = window.pageYOffset;
+    // 210 is the threshold
+    if (el.scrollTop >= 60 || w >= 60) {
+      this.sticky = true;
+    } else {
+      this.sticky = false;
+    }
+    
+    this.stickyChanged.emit(this.sticky);
   }
 
+  ngOnInit() {
+    window.addEventListener('scroll', this.onScroll.bind(this), true);
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('scroll', this.onScroll, true);
+  }
+ 
   ngOnChanges(changes) {
     let {section_num, question_done, question_count, total_question_count} = changes;
     // change in section_num

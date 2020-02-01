@@ -24,6 +24,7 @@ export class QuestionaireComponent implements OnInit {
   questions = questions.filter((q, i) => q.section_num === this.section_cur);
   questions_done = 0;
   total_question_count = questions.length;
+  sticky = false;
 
   constructor(private fb: FormBuilder) { 
   }
@@ -38,6 +39,7 @@ export class QuestionaireComponent implements OnInit {
       this.section_cur += 1;
       this._getQuestions();
       document.getElementById('root').scroll(0, 0);
+      window.scroll(0, 0);
     }
   }
   handleClickBack() {
@@ -45,6 +47,7 @@ export class QuestionaireComponent implements OnInit {
       this.section_cur -= 1;
       this._getQuestions();
       document.getElementById('root').scroll(0, 0);
+      window.scroll(0, 0);
     }
   }
   _getQuestions() {
@@ -57,5 +60,8 @@ export class QuestionaireComponent implements OnInit {
       return (q.section_num === this.section_cur) && (q.yesNo !== "" || q.written !== "")
     });
     this.questions_done = arr.length;
+  }
+  handleSticky(stickyState: boolean) {
+    this.sticky = stickyState;
   }
 }
