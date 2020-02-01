@@ -1,0 +1,19 @@
+<div class="progress-banner">
+    <p class="progress-text">Progress</p>
+    <div class="progress-group">
+        <div class="progress" *ngFor="let i of loop_arr; index as j">
+            <div class="progress-label" [style.display]="hover_section === j ? 'block' : 'none'">
+                Section
+            </div>
+            <div class="progress-dot" (mouseover)="hover_section = j" (mouseleave)="hover_section = null">
+        
+            </div>
+            <div class="progress-bar" [style.width]="j < section_cur ? '100%' : progress">
+        
+            </div>
+            <div class="progress-dot-end" *ngIf="true">
+        
+            </div>
+        </div>
+    </div>
+</div>
