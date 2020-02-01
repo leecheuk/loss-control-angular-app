@@ -17,6 +17,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QuestionComponent } from './components/question/question.component';
 import { ButtonComponent } from './components/button/button.component';
+import { ProgressComponent } from './components/progress/progress.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ButtonComponent } from './components/button/button.component';
     ReportComponent,
     LayoutComponent,
     QuestionComponent,
-    ButtonComponent
+    ButtonComponent,
+    ProgressComponent
   ],
   imports: [
     BrowserModule,
