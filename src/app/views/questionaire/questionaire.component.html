@@ -11,7 +11,8 @@
         <h1>{{questions[0].section}}</h1>
         <br/>
         <div>
-            <app-question [question]="question" [formGroup]="questionsForm.controls.questions.at(question.num - 1)"
+            <app-question 
+                [question]="question" [formGroup]="questionsForm.controls.questions.at(question.num - 1)"
                 *ngFor="let question of questions; let i = index"></app-question>
         </div>
         <div class="btn-group">

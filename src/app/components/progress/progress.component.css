@@ -7,6 +7,17 @@
 }
 .progress-banner.sticky {
     background-color: #fde876;
+        /* background-color: #fafafa; */
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    opacity: 1;
+    align-items: end;
+}
+.progress-banner.sticky .progress-group {
+    margin-left: 15px;
 }
 .progress {
     height: 6px;
@@ -66,6 +77,18 @@
 }
 .progress-dot-end, .progress-dot {
     cursor: pointer;
+}
+.progress-bar-hover {
+    width: 30px;
+    height: 6px;
+    background: #777;
+    position: absolute;
+    top: 0;
+    left: 0.3px;
+    transition: all 100ms ease-in;
+}
+.progress-dot.hover, .progress-dot.hover {
+    background: #777;
 }
 .progress-dot-end.active, .progress-dot.active {
     background: #dc4040;

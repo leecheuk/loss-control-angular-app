@@ -9,12 +9,20 @@
                 [style.display]="hover_section === j ? 'block' : 'none'">
                 {{section_titles[j]}}
             </div>
-            <div class="progress-dot" [class.active]="j < section_cur" (mouseover)="hover_section = j" (mouseleave)="hover_section = null">
+            <div class="progress-dot" 
+                [class.hover]="j <= hover_section && false" 
+                [style.transition]="'background-color 1ms forwards ' + (j+1)*55 + 'ms'"
+                [class.active]="j < section_cur" 
+                (mouseover)="hover_section = j" 
+                (mouseleave)="hover_section = null">
         
             </div>
-            <div class="progress-bar" [style.width]="j + 1 < section_cur ? '100%' : j + 1 === section_cur ? progress : '0%'">
-        
+            <div class="progress-bar" 
+                [style.width]="j + 1 < section_cur ? '100%' : j + 1 === section_cur ? progress : '0%'">
             </div>
+            <!-- <div class="progress-bar-hover"
+                [style.transition]="'width ' + 50 + 'ms ' + 'ease-in ' + j*55 + 'ms'" 
+                [style.width]="j < hover_section ? '100%': 0"></div> -->
             <div class="progress-dot-end" *ngIf="true">
         
             </div>
