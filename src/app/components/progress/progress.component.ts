@@ -9,11 +9,13 @@ export class ProgressComponent implements OnInit {
 
   @Input() section_num: number;
   @Input() section_cur: number;
+  @Input() section_cur_done: number;
   @Input() question_count: number;
   @Input() question_done: number;
   @Input() section_titles: string[];
   @Input() total_question_count: number;
   @Output() stickyChanged: EventEmitter<boolean> = new EventEmitter();
+  @Output() sectionCurChanged: EventEmitter<number> = new EventEmitter();
   loop_arr: number[]; // array holder for loops
   progress: string;
   total_progress: string;
@@ -60,6 +62,12 @@ export class ProgressComponent implements OnInit {
     if ((question_done && question_done.previousValue !== question_done.currentValue) || 
       (question_count && question_count.previousValue !== question_count.currentValue)) {
         this.progress = `${Math.floor(this.question_done*100 / this.question_count)}%`;
+    }
+  }
+
+  handleSectionClick(section_num) {
+    if (section_num <= this.section_cur_done) {
+      this.sectionCurChanged.emit(section_num);
     }
   }
 

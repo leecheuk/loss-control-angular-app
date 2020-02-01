@@ -2,11 +2,13 @@
     <app-progress
         [section_num]="section_num"
         [section_cur]="section_cur"
+        [section_cur_done]="section_cur_done"
         [question_count]="questions.length"
         [question_done]="questions_done"
         [total_question_count]="total_question_count"
         [section_titles]="section_titles"
         (stickyChanged)="handleSticky($event)"
+        (sectionCurChanged)="handleSectionNav($event)"
         ></app-progress>
     <form [formGroup]="questionsForm">
         <h1 
