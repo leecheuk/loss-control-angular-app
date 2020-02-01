@@ -8,46 +8,54 @@ import questions from '../../seed/data.json';
   styleUrls: ['./questionaire.component.css']
 })
 export class QuestionaireComponent implements OnInit {
-  questionForm = this.fb.group({
-    id: '',
-    num: '',
-    yesNo: '',
-    written: '',
-    checklist: ''
-  })
   questionsForm = this.fb.group({
     questions: this.fb.array(questions.map(q => this.fb.group({
       id: q.id,
       num: q.num,
+      section_num: q.section_num,
       yesNo: '',
       written: '',
       checklist: this.fb.array(Array(q.checklist.length).fill(false))
     })))
   })
-  section_num = 1;
-  questions = questions.filter((q, i) => q.section_num === this.section_num);
+  section_cur = 1;
+  section_num = (new Set(questions.map(q => q.section))).size;
+  section_titles = Array.from(new Set(questions.map(q => q.section)));
+  questions = questions.filter((q, i) => q.section_num === this.section_cur);
+  questions_done = 0;
+  total_question_count = questions.length;
 
   constructor(private fb: FormBuilder) { 
   }
 
   ngOnInit() {
-    this.questionsForm.valueChanges.subscribe(console.log);
+    this.questionsForm.valueChanges.subscribe(data => {
+      this._getQuestionsDone(data.questions);
+    });
   }
   handleClickNext() {
-    if (this.section_num < 5) {
-      this.section_num += 1;
+    if (this.section_cur < 5) {
+      this.section_cur += 1;
       this._getQuestions();
       document.getElementById('root').scroll(0, 0);
     }
   }
   handleClickBack() {
-    if (this.section_num > 1) {
-      this.section_num -= 1;
+    if (this.section_cur > 1) {
+      this.section_cur -= 1;
       this._getQuestions();
       document.getElementById('root').scroll(0, 0);
     }
   }
   _getQuestions() {
-    this.questions = questions.filter((q, i) => q.section_num === this.section_num);
+    this.questions = questions.filter((q, i) => q.section_num === this.section_cur);
+    this._getQuestionsDone(this.questionsForm.value.questions);
+  }
+  // get count of number of questions done in current section from form questions
+  _getQuestionsDone(questions_input) {
+    let arr = questions_input.filter(q => {
+      return (q.section_num === this.section_cur) && (q.yesNo !== "" || q.written !== "")
+    });
+    this.questions_done = arr.length;
   }
 }

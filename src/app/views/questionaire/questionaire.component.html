@@ -1,4 +1,12 @@
 <app-layout>
+    <app-progress
+        [section_num]="section_num"
+        [section_cur]="section_cur"
+        [question_count]="questions.length"
+        [question_done]="questions_done"
+        [total_question_count]="total_question_count"
+        [section_titles]="section_titles"
+        ></app-progress>
     <form [formGroup]="questionsForm">
         <h1>{{questions[0].section}}</h1>
         <br/>
@@ -7,8 +15,8 @@
                 *ngFor="let question of questions; let i = index"></app-question>
         </div>
         <div class="btn-group">
-            <app-button [title]="'Back'" id="btn-back" (click)="handleClickBack()" *ngIf="section_num > 1"></app-button>
-            <app-button [title]="'Next'" id="btn-next" (click)="handleClickNext()" *ngIf="section_num !== 5"></app-button>
+            <app-button [title]="'Back'" id="btn-back" (click)="handleClickBack()" *ngIf="section_cur > 1"></app-button>
+            <app-button [title]="'Next'" id="btn-next" (click)="handleClickNext()" *ngIf="section_cur !== 5"></app-button>
         </div>
     </form>
 </app-layout>

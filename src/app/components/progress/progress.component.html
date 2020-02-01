@@ -1,14 +1,18 @@
 <div class="progress-banner">
-    <p class="progress-text">Progress</p>
+    <p class="progress-text">Progress {{total_progress}}</p>
     <div class="progress-group">
         <div class="progress" *ngFor="let i of loop_arr; index as j">
-            <div class="progress-label" [style.display]="hover_section === j ? 'block' : 'none'">
-                Section
+            <div 
+                #label 
+                class="progress-label" 
+                [style.left]="-label.offsetWidth / 2 - 17 + 'px'"
+                [style.display]="hover_section === j ? 'block' : 'none'">
+                {{section_titles[j]}}
             </div>
-            <div class="progress-dot" (mouseover)="hover_section = j" (mouseleave)="hover_section = null">
+            <div class="progress-dot" [class.active]="j < section_cur" (mouseover)="hover_section = j" (mouseleave)="hover_section = null">
         
             </div>
-            <div class="progress-bar" [style.width]="j < section_cur ? '100%' : progress">
+            <div class="progress-bar" [style.width]="j + 1 < section_cur ? '100%' : j + 1 === section_cur ? progress : '0%'">
         
             </div>
             <div class="progress-dot-end" *ngIf="true">

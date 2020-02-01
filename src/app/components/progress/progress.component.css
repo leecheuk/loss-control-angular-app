@@ -26,14 +26,14 @@
 .progress-label {
     display: none;
     position: absolute;
-    bottom: -600%;
-    left: -100%;
     font-size: 11px;
     background: #333;
     padding: 3px 5px;
     color: #FFF;
     font-weight: 500;
     border-radius: 3px;
+    transform: translate(-47%, 120%);
+    white-space: pre;
 }
 .progress-label::before {
     content: '';
@@ -41,15 +41,15 @@
     width: 10px;
     background: #333;
     position: absolute;
-    top: -26%;
-    transform: rotate(45deg);
-    left: 40%;
     z-index: -1;
+    left: 50%;
+    top: -5px;
+    transform: rotate(45deg);
 }
 .progress-dot {
     width: 15px;
     height: 15px;
-    background: #dc4040;
+    background: #ccc;
     position: absolute;
     border-radius: 50%;
     top: -4.5px;
@@ -66,6 +66,9 @@
 }
 .progress-dot-end, .progress-dot {
     cursor: pointer;
+}
+.progress-dot-end.active, .progress-dot.active {
+    background: #dc4040;
 }
 .progress-bar {
     width: 0;
