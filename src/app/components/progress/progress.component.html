@@ -1,6 +1,7 @@
 <div class="progress-banner" [class.sticky]="sticky">
     <p class="progress-text">
-        {{sticky ? section_titles[section_cur_done - 1] + ' (' + total_progress + ')' : 'Progress ' + total_progress}}</p>
+        {{sticky ? section_titles[section_cur - 1] + ' (' + total_progress + ')' : 'Progress ' + total_progress}}
+    </p>
     <div class="progress-group">
         <div class="progress" *ngFor="let i of loop_arr; index as j">
             <div 
@@ -13,13 +14,13 @@
             <div class="progress-dot" 
                 [class.hover]="j <= hover_section && false" 
                 [style.transition]="'background-color 1ms forwards ' + (j+1)*55 + 'ms'"
-                [class.active]="j < section_cur_done" 
+                [class.active]="j <= section_cur_done" 
                 (click)="handleSectionClick(j+1)"
                 (mouseover)="hover_section = j" 
                 (mouseleave)="hover_section = null">
             </div>
             <div class="progress-bar" 
-                [style.width]="j + 1 < section_cur_done ? '100%' : j + 1 === section_cur_done ? progress : '0%'">
+                [style.width]="j + 1 <= section_cur_done ? '100%' : j + 1 === section_cur_done + 1 ? progress : '0%'">
             </div>
             <!-- <div class="progress-bar-hover"
                 [style.transition]="'width ' + 50 + 'ms ' + 'ease-in ' + j*55 + 'ms'" 

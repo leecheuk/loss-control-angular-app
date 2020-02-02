@@ -3,7 +3,7 @@
         [section_num]="section_num"
         [section_cur]="section_cur"
         [section_cur_done]="section_cur_done"
-        [question_count]="questions.length"
+        [question_count]="questions_count"
         [question_done]="questions_done"
         [total_question_count]="total_question_count"
         [section_titles]="section_titles"
@@ -22,7 +22,12 @@
         </div>
         <div class="btn-group">
             <app-button [title]="'Back'" id="btn-back" (click)="handleClickBack()" *ngIf="section_cur > 1"></app-button>
-            <app-button [title]="'Next'" id="btn-next" (click)="handleClickNext()" *ngIf="section_cur !== 5"></app-button>
+            <app-button 
+                [disabled]="questions.length !== questions_done_cur"
+                [title]="'Next'" 
+                id="btn-next" 
+                (click)="handleClickNext()" 
+                *ngIf="section_cur !== 5"></app-button>
         </div>
     </form>
 </app-layout>

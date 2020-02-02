@@ -24,3 +24,6 @@
     background: #df3030;
     color: #fafafa;
 }
+.btn-action.disabled {
+    opacity: 0.5;
+}

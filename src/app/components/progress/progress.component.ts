@@ -66,7 +66,7 @@ export class ProgressComponent implements OnInit {
   }
 
   handleSectionClick(section_num) {
-    if (section_num <= this.section_cur_done) {
+    if (section_num <= this.section_cur_done + 1) {
       this.sectionCurChanged.emit(section_num);
     }
   }
