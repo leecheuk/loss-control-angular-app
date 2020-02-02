@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, AfterViewInit, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, ViewChildren } from '@angular/core';
 
 @Component({
   selector: 'app-progress',
   templateUrl: './progress.component.html',
   styleUrls: ['./progress.component.css']
 })
-export class ProgressComponent implements OnInit {
+export class ProgressComponent implements AfterViewInit {
 
   @Input() section_num: number;
   @Input() section_cur: number;
@@ -17,6 +17,7 @@ export class ProgressComponent implements OnInit {
   @Input() total_questions_done: number;
   @Output() stickyChanged: EventEmitter<boolean> = new EventEmitter();
   @Output() sectionCurChanged: EventEmitter<number> = new EventEmitter();
+  @ViewChildren("label") labelEls: ElementRef;
   loop_arr: number[]; // array holder for loops
   progress: string;
   total_progress: string;
@@ -38,6 +39,12 @@ export class ProgressComponent implements OnInit {
     }
     
     this.stickyChanged.emit(this.sticky);
+  }
+
+  ngAfterViewInit() {
+    this.labelEls._results.forEach(e => {
+      e.nativeElement.style.left = e.nativeElement.offsetWidth / 2 - 17 + 'px';
+    });
   }
 
   ngOnInit() {
