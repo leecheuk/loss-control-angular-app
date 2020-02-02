@@ -27,7 +27,10 @@
             <!-- <div class="progress-bar-hover"
                 [style.transition]="'width ' + 50 + 'ms ' + 'ease-in ' + j*55 + 'ms'" 
                 [style.width]="j < hover_section ? '100%': 0"></div> -->
-            <div class="progress-dot-end" [class.active]="section_cur_done === section_num">
+            <div 
+                class="progress-dot-end" 
+                (click)="handleSectionClick(section_num + 1)"
+                [class.active]="section_cur_done === section_num">
         
             </div>
         </div>

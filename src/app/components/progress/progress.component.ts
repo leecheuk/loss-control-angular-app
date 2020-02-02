@@ -31,8 +31,8 @@ export class ProgressComponent implements AfterViewInit {
   onScroll(e) {
     let el = document.getElementById('root');
     let w = window.pageYOffset;
-    // 210 is the threshold
-    if (el.scrollTop >= 60 || w >= 60) {
+    // 60 is the threshold
+    if ((el.scrollTop >= 60 || w >= 60) && (this.section_cur <= this.section_num && this.section_cur !== 0)) {
       this.sticky = true;
     } else {
       this.sticky = false;
