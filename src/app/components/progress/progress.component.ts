@@ -42,9 +42,11 @@ export class ProgressComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.labelEls._results.forEach(e => {
-      e.nativeElement.style.left = e.nativeElement.offsetWidth / 2 - 17 + 'px';
-    });
+    if (this.labelEls && this.labelEls._results) {
+      this.labelEls._results.forEach(e => {
+        e.nativeElement.style.left = e.nativeElement.offsetWidth / 2 - 17 + 'px';
+      });
+    }
   }
 
   ngOnInit() {
