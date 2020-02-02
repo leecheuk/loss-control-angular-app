@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, ViewChildren } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, ViewChildren } from '@angular/core';
 
 @Component({
   selector: 'app-progress',
