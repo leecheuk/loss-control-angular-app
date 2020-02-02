@@ -14,6 +14,7 @@ export class ProgressComponent implements OnInit {
   @Input() question_done: number;
   @Input() section_titles: string[];
   @Input() total_question_count: number;
+  @Input() total_questions_done: number;
   @Output() stickyChanged: EventEmitter<boolean> = new EventEmitter();
   @Output() sectionCurChanged: EventEmitter<number> = new EventEmitter();
   loop_arr: number[]; // array holder for loops
@@ -48,15 +49,21 @@ export class ProgressComponent implements OnInit {
   }
  
   ngOnChanges(changes) {
-    let {section_num, question_done, question_count, total_question_count} = changes;
+    let {
+          section_num, 
+          question_done, 
+          question_count, 
+          total_question_count, 
+          total_questions_done
+        } = changes;
     // change in section_num
     if (section_num && section_num.previousValue !== section_num.currentValue) {
       this.loop_arr = Array(this.section_num).fill(0);
     }
-    // change in question_done or total_question_count for total progress
-    if ((question_done && question_done.previousValue !== question_done.currentValue) || 
+    // change in total_questions_done or total_question_count for total progress
+    if ((total_questions_done && total_questions_done.previousValue !== total_questions_done.currentValue) || 
       (total_question_count && total_question_count.previousValue !== total_question_count.currentValue)) {
-        this.total_progress = `${Math.floor(this.question_done*100 / this.total_question_count)}%`;
+        this.total_progress = `${Math.floor(this.total_questions_done*100 / this.total_question_count)}%`;
     }
     // change in question_done or question_count for section progress
     if ((question_done && question_done.previousValue !== question_done.currentValue) || 

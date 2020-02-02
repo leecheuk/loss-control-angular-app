@@ -26,6 +26,7 @@ export class QuestionaireComponent implements OnInit {
   questions_count = 0; // number of questions in latest section
   questions_done = 0; // questions done of latest section
   questions_done_cur = 0; // questions done in current section
+  total_questions_done = 0; // number of questions done in total
   total_question_count = questions.length; 
   sticky = false;
 
@@ -37,9 +38,11 @@ export class QuestionaireComponent implements OnInit {
     this._getLatestQuestionsCount();
     this._getQuestionsDone(this.questionsForm.value.questions);
     this._getQuestionsDoneCur(this.questionsForm.value.questions);
+    this._getQuestionsDoneTotal(this.questionsForm.value.questions);
     this.questionsForm.valueChanges.subscribe(data => {
       this._getQuestionsDone(data.questions);
       this._getQuestionsDoneCur(data.questions);
+      this._getQuestionsDoneTotal(data.questions);
     });
   }
   handleClickNext() {
@@ -81,6 +84,12 @@ export class QuestionaireComponent implements OnInit {
       return (q.section_num === this.section_cur) && (q.yesNo !== "" || q.written !== "")
     });
     this.questions_done_cur = arr.length;
+  }
+  _getQuestionsDoneTotal(questions_input) {
+    let arr = questions_input.filter(q => {
+      return (q.yesNo !== "" || q.written !== "")
+    });
+    this.total_questions_done = arr.length;
   }
   // get questions count of latest section
   _getLatestQuestionsCount() {
