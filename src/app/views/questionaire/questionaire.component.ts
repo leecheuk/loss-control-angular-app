@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import * as moment from 'moment';
 import questions from '../../seed/data.json';
 
 @Component({
@@ -49,7 +50,7 @@ export class QuestionaireComponent implements OnInit {
     this._getSectionsDone(this.questionsForm.value.questions);
     this._getLatestQuestionsCount();
     // allow next only if all questions answered
-    if (this.section_cur < 5 && this.questions.length === this.questions_done_cur) {
+    if (this.section_cur <= this.section_num && this.questions.length === this.questions_done_cur) {
       this.section_cur += 1;
       // this.section_cur_done += 1;
       this._getQuestions();
@@ -122,5 +123,11 @@ export class QuestionaireComponent implements OnInit {
     this._getLatestQuestionsCount();
     document.getElementById('root').scroll(0, 0);
     window.scroll(0, 0);
+  }
+  getDate() {
+    return moment().format("MM-DD-YYYY");
+  }
+  getTime() {
+    return moment().format("h:mm a")
   }
 }

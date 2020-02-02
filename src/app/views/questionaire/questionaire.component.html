@@ -18,37 +18,84 @@
         </div>
     </ng-container>
     <ng-container *ngIf="section_cur > 0">
-    <app-progress
-        [section_num]="section_num"
-        [section_cur]="section_cur"
-        [section_cur_done]="section_cur_done"
-        [question_count]="questions_count"
-        [question_done]="questions_done"
-        [total_question_count]="total_question_count"
-        [total_questions_done]="total_questions_done"
-        [section_titles]="section_titles"
-        (stickyChanged)="handleSticky($event)"
-        (sectionCurChanged)="handleSectionNav($event)"
-        ></app-progress>
-    <form [formGroup]="questionsForm">
-        <h1 
-            class="questionaire-title"
-            [style.marginTop]="sticky ? '180px' : ''">{{questions[0].section}}</h1>
-        <br/>
-        <div>
-            <app-question 
-                [question]="question" [formGroup]="questionsForm.controls.questions.at(question.num - 1)"
-                *ngFor="let question of questions; let i = index"></app-question>
-        </div>
+        <app-progress
+            [section_num]="section_num"
+            [section_cur]="section_cur"
+            [section_cur_done]="section_cur_done"
+            [question_count]="questions_count"
+            [question_done]="questions_done"
+            [total_question_count]="total_question_count"
+            [total_questions_done]="total_questions_done"
+            [section_titles]="section_titles"
+            (stickyChanged)="handleSticky($event)"
+            (sectionCurChanged)="handleSectionNav($event)"
+            ></app-progress>
+        <form [formGroup]="questionsForm" *ngIf="section_cur <= section_num">
+            <h1 
+                class="questionaire-title"
+                [style.marginTop]="sticky ? '180px' : ''">{{questions[0].section}}</h1>
+            <br/>
+            <div>
+                <app-question 
+                    [question]="question" [formGroup]="questionsForm.controls.questions.at(question.num - 1)"
+                    *ngFor="let question of questions; let i = index"></app-question>
+            </div>
+            <div class="btn-group">
+                <app-button [title]="'Back'" id="btn-back" (click)="handleClickBack()" *ngIf="section_cur > 1"></app-button>
+                <app-button 
+                    [disabled]="questions.length !== questions_done_cur"
+                    [title]="'Next'" 
+                    id="btn-next" 
+                    (click)="handleClickNext()" 
+                    *ngIf="section_cur <= 5"></app-button>
+            </div>
+        </form>
+    </ng-container>
+    <ng-container *ngIf="section_cur === section_num + 1">
+        <h1>Review</h1>
+        <p>
+            Confirm the following information is correct and submit the information. If any of the information is incorrect, please contact us with your
+            form id or account number. 
+        </p>
+        <h2>Submission information</h2>
+        <ul class="questionaire-account">
+            <li>
+                <div>Date: </div>
+                <div>{{getDate()}}</div>
+            </li>
+            <li>
+                <div>Time: </div>
+                <div>{{getTime()}}</div>
+            </li>
+            <li>
+                <div>Organization: </div>
+                <div>Premium Insurance Company</div>
+            </li>
+            <li>
+                <div>Account Number: </div>
+                <div>AC-123456789</div>
+            </li>
+            <li>
+                <div>Account Number: </div>
+                <div>AC-123456789</div>
+            </li>
+            <li>
+                <div>Name: </div>
+                <div>John Doe</div>
+            </li>
+            <li>
+                <div>Title: </div>
+                <div>Operation Manager</div>
+            </li>
+            <li>
+                <div>Phone: </div>
+                <div>(123) 456-7890</div>
+            </li>
+        </ul>
         <div class="btn-group">
-            <app-button [title]="'Back'" id="btn-back" (click)="handleClickBack()" *ngIf="section_cur > 1"></app-button>
-            <app-button 
-                [disabled]="questions.length !== questions_done_cur"
-                [title]="'Next'" 
-                id="btn-next" 
-                (click)="handleClickNext()" 
-                *ngIf="section_cur !== 5"></app-button>
+            <a routerLink="/">
+            <app-button [title]="'Submit'" id="btn-next"></app-button>
+            </a>
         </div>
-    </form>
     </ng-container>
 </app-layout>
