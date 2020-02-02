@@ -8,4 +8,24 @@
     margin-top: 80px;
 }
 .questionaire-title {
+
+}
+.questionaire-intro {
+    margin-bottom: 50px;
+}
+.questionaire-account {
+    margin: 0;
+    padding: 0;
+}
+.questionaire-account li {
+    list-style: none;
+    display: flex;
+    margin-bottom: 15px;
+}
+.questionaire-account div:first-child {
+    width: 150px;
+    flex-shrink: 0;
+}
+.questionaire-account div:last-child {
+    font-weight: 500;
 }

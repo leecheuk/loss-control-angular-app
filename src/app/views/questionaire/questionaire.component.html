@@ -1,4 +1,23 @@
 <app-layout>
+    <ng-container *ngIf="section_cur === 0">
+        <h1 class="questionaire-title">Loss Control Questionaire</h1>
+        <p class="questionaire-intro">
+            This is a loss control questionaire intented to help you assess how to minimize losses in your operation. To begin, please click start.
+        </p>
+        <h2>Account information</h2>
+        <ul class="questionaire-account">
+            <li><div>Organization: </div> <div>Premium Insurance Company</div></li>
+            <li><div>Account Number: </div> <div>AC-123456789</div></li>
+            <li><div>Name: </div> <div>John Doe</div></li>
+            <li><div>Title: </div> <div>Operation Manager</div></li>
+            <li><div>Phone: </div> <div>(123) 456-7890</div></li>
+        </ul>
+        <div class="btn-group">
+            <app-button [disabled]="questions.length !== questions_done_cur" [title]="'Start'" id="btn-next"
+                (click)="handleClickNext()" *ngIf="section_cur !== 5"></app-button>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="section_cur > 0">
     <app-progress
         [section_num]="section_num"
         [section_cur]="section_cur"
@@ -31,4 +50,5 @@
                 *ngIf="section_cur !== 5"></app-button>
         </div>
     </form>
+    </ng-container>
 </app-layout>

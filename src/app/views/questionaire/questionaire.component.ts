@@ -18,7 +18,7 @@ export class QuestionaireComponent implements OnInit {
       checklist: this.fb.array(Array(q.checklist.length).fill(false))
     })))
   })
-  section_cur = 1;
+  section_cur = 0;
   section_cur_done = 0;
   section_num = (new Set(questions.map(q => q.section))).size;
   section_titles = Array.from(new Set(questions.map(q => q.section)));
