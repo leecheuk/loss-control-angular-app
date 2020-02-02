@@ -10,6 +10,9 @@
                 [style.display]="hover_section === j ? 'block' : 'none'">
                 {{section_titles[j]}}
             </div>
+            <div class="progress-here" *ngIf="section_cur === j + 1">
+
+            </div>
             <div class="progress-dot" 
                 [class.hover]="j <= hover_section && false" 
                 [style.transition]="'background-color 1ms forwards ' + (j+1)*55 + 'ms'"
