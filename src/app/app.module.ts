@@ -18,6 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QuestionComponent } from './components/question/question.component';
 import { ButtonComponent } from './components/button/button.component';
 import { ProgressComponent } from './components/progress/progress.component';
+import { StoreModule } from '@ngrx/store';
+import {questionsReducer} from './store/reducers/questions';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,10 @@ import { ProgressComponent } from './components/progress/progress.component';
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    StoreModule.forRoot({
+      questions: questionsReducer
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

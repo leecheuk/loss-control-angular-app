@@ -2,6 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import moment from 'moment';
 import questions from '../../seed/data.json';
+import {Question} from '../../models/question';
+// store
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import * as QuestionsActions from '../../store/actions/questions';
+
+interface AppState {
+  questions: Question[]
+}
 
 @Component({
   selector: 'app-questionaire',
@@ -9,6 +18,7 @@ import questions from '../../seed/data.json';
   styleUrls: ['./questionaire.component.css']
 })
 export class QuestionaireComponent implements OnInit {
+  qs$: Observable<Question[]>;
   questionsForm = this.fb.group({
     questions: this.fb.array(questions.map(q => this.fb.group({
       id: q.id,
@@ -31,7 +41,13 @@ export class QuestionaireComponent implements OnInit {
   total_question_count = questions.length; 
   sticky = false;
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private store: Store<AppState>) { 
+    this.qs$ = this.store.select('questions');
+    this.getQuestions();
+  }
+
+  getQuestions() {
+    this.store.dispatch(new QuestionsActions.GetQuestions())
   }
 
   ngOnInit() {

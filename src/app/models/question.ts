@@ -2,7 +2,7 @@
  * Question model
  */
 
-export class Question {
+export interface Question {
     id: string;
     num: number;
     section_num: number;
