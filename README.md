@@ -10,3 +10,7 @@ An angular app for users to fill in a loss control questionaire.
 ```
 ng serve --o
 ```
+
+## Todo
+- refactor question to service
+- add store for state management (NgRx)
