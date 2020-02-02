@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, ViewChildren } from '@angular/core';
+import { Component, QueryList, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, ViewChildren } from '@angular/core';
 
 @Component({
   selector: 'app-progress',
@@ -17,7 +17,7 @@ export class ProgressComponent implements AfterViewInit {
   @Input() total_questions_done: number;
   @Output() stickyChanged: EventEmitter<boolean> = new EventEmitter();
   @Output() sectionCurChanged: EventEmitter<number> = new EventEmitter();
-  @ViewChildren("label") labelEls: ElementRef;
+  @ViewChildren("label") labelEls: QueryList<ElementRef>;
   loop_arr: number[]; // array holder for loops
   progress: string;
   total_progress: string;
@@ -42,8 +42,8 @@ export class ProgressComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (this.labelEls && this.labelEls._results) {
-      this.labelEls._results.forEach(e => {
+    if (this.labelEls) {
+      this.labelEls.forEach(e => {
         e.nativeElement.style.left = e.nativeElement.offsetWidth / 2 - 17 + 'px';
       });
     }
