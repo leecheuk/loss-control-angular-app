@@ -3,13 +3,15 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import moment from 'moment';
 import questions from '../../seed/data.json';
 import {Question} from '../../models/question';
+// service
+import {QuestionService} from '../../services/question.service';
 // store
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as QuestionsActions from '../../store/actions/questions';
 
 interface AppState {
-  questions: Question[]
+  questions: Observable<Question[]>
 }
 
 @Component({
@@ -41,16 +43,19 @@ export class QuestionaireComponent implements OnInit {
   total_question_count = questions.length; 
   sticky = false;
 
-  constructor(private fb: FormBuilder, private store: Store<AppState>) { 
+  constructor(private fb: FormBuilder, private store: Store<AppState>, private questionService: QuestionService) { 
     this.qs$ = this.store.select('questions');
     this.getQuestions();
   }
 
   getQuestions() {
-    this.store.dispatch(new QuestionsActions.GetQuestions())
+    // this.store.dispatch(new QuestionsActions.GetQuestions());
+    this.questionService.getQuestions()
+      .subscribe(qs => this.qs$ = qs);
   }
 
   ngOnInit() {
+    this.getQuestions();
     this._getSectionsDone(this.questionsForm.value.questions);
     this._getLatestQuestionsCount();
     this._getQuestionsDone(this.questionsForm.value.questions);
@@ -120,7 +125,7 @@ export class QuestionaireComponent implements OnInit {
     // filter out questions that have input, then map to section number and map to sets
     let arr = questions_input.filter(input => {
       let qs = questions[input.num - 1]
-      if (qs.yes_no === 'true') {
+      if (qs.yes_no === true) {
         return input.yesNo === '';
       } else {
         return input.written === '';
