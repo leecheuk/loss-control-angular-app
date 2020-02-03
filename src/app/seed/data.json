@@ -5,10 +5,10 @@
         "section_num": 1,
         "section": "Section 1: Organizational Safety",
         "question": "Do you have a written Safety or Loss Control policy statement?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "2",
@@ -16,10 +16,10 @@
         "section_num": 1,
         "section": "Section 1: Organizational Safety",
         "question": "Was it signed by senior management?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "3",
@@ -27,10 +27,10 @@
         "section_num": 1,
         "section": "Section 1: Organizational Safety",
         "question": "Have all employees, board members/officers, and volunteers been trained on the policy?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "4",
@@ -38,10 +38,10 @@
         "section_num": 1,
         "section": "Section 1: Organizational Safety",
         "question": "Do you have a Safety Director? (If \"yes\", what is his/her name?)",
-        "written_ans": "true",
-        "written_ans_yes": "true",
+        "written_ans": true,
+        "written_ans_yes": true,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "5",
@@ -49,10 +49,10 @@
         "section_num": 1,
         "section": "Section 1: Organizational Safety",
         "question": "Do you currently have a safety committee?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "6",
@@ -60,10 +60,10 @@
         "section_num": 1,
         "section": "Section 1: Organizational Safety",
         "question": "Are written minutes kept for safety committee meetings?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "7",
@@ -71,10 +71,10 @@
         "section_num": 1,
         "section": "Section 1: Organizational Safety",
         "question": "Are all levels of your organization evaluated annually for safety practices?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "8",
@@ -82,10 +82,10 @@
         "section_num": 2,
         "section": "Section 2: Employment practices",
         "question": "Do you have written personnel policies that require compliance with EEOC and applicable federal and state employment laws and/or written by-laws. (This question applies even if you only have volunteers at your organization. If you have checked “yes”, indicate which areas they cover).",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": ["Hiring", "Promotion", "Discipline", "Termination"],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "9",
@@ -93,10 +93,10 @@
         "section_num": 2,
         "section": "Section 2: Employment practices",
         "question": "Do you have an entity wide policy specifically prohibiting sexual harassment?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "10",
@@ -104,10 +104,10 @@
         "section_num": 2,
         "section": "Section 2: Employment practices",
         "question": "Does your policy make clear that your entity does not tolerate any form of harassment in the workplace?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "11",
@@ -115,10 +115,10 @@
         "section_num": 2,
         "section": "Section 2: Employment practices",
         "question": "Does your policy clearly state a mechanism for reporting allegations of harassment to someone other than the alleged offender?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "12",
@@ -126,10 +126,10 @@
         "section_num": 2,
         "section": "Section 2: Employment practices",
         "question": "Do you have objective and specific written job descriptions for all employees?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "13",
@@ -137,10 +137,10 @@
         "section_num": 2,
         "section": "Section 2: Employment practices",
         "question": "If you have employment positions that involve employees or volunteers dealing with minor children or vulnerable adults, do you perform criminal background checks prior to hiring for these positions? If you have no such positions, please indicate below",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": ["No such positions"],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "14",
@@ -148,10 +148,10 @@
         "section_num": 2,
         "section": "Section 2: Employment practices",
         "question": "How many background checks did you perform last year?",
-        "written_ans": "true",
-        "written_ans_yes": "false",
+        "written_ans": true,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "false"
+        "yes_no": false
     },
     {
         "id": "15",
@@ -159,10 +159,10 @@
         "section_num": 3,
         "section": "Section 3: Vehicle/driver Safety",
         "question": "Do you have individuals that drive on your organization’s behalf?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "16",
@@ -170,10 +170,10 @@
         "section_num": 3,
         "section": "Section 3: Vehicle/driver Safety",
         "question": "Do you verify that all employees who drive vehicles on your behalf have a valid driver’s license?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "17",
@@ -181,10 +181,10 @@
         "section_num": 3,
         "section": "Section 3: Vehicle/driver Safety",
         "question": "Do you have a copy of each of their driver’s licenses in your files?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "18",
@@ -192,10 +192,10 @@
         "section_num": 3,
         "section": "Section 3: Vehicle/driver Safety",
         "question": " Do you check DMV driver records for every employee who drives a vehicle on your behalf?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "19",
@@ -203,10 +203,10 @@
         "section_num": 3,
         "section": "Section 3: Vehicle/driver Safety",
         "question": "Do you provide training on safe vehicle operations to your employees? If the answer is “yes”, who provides this training?",
-        "written_ans": "false",
-        "written_ans_yes": "true",
+        "written_ans": false,
+        "written_ans_yes": true,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "20",
@@ -214,10 +214,10 @@
         "section_num": 3,
         "section": "Section 3: Vehicle/driver Safety",
         "question": "Do you do regular preventative maintenance on all entity owned or leased vehicles?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "21",
@@ -225,10 +225,10 @@
         "section_num": 3,
         "section": "Section 3: Vehicle/driver Safety",
         "question": "Do you verify that all vehicles driven by employees on work-related duties (whether private or entity-owned) are properly insured and registered with valid inspections?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "22",
@@ -236,10 +236,10 @@
         "section_num": 3,
         "section": "Section 3: Vehicle/driver Safety",
         "question": "Do you have a policy to, and do you perform root cause analyses in the event of automobile accidents?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "23",
@@ -247,10 +247,10 @@
         "section_num": 3,
         "section": "Section 3: Vehicle/driver Safety",
         "question": "What action is taken as a result of these analyses?",
-        "written_ans": "true",
-        "written_ans_yes": "false",
+        "written_ans": true,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "false"
+        "yes_no": false
     },
     {
         "id": "24",
@@ -258,10 +258,10 @@
         "section_num": 3,
         "section": "Section 3: Vehicle/driver Safety",
         "question": "Do you have a program for recognizing safe drivers and accident-free driving? If “yes”, how do you recognize these drivers?",
-        "written_ans": "true",
-        "written_ans_yes": "true",
+        "written_ans": true,
+        "written_ans_yes": true,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "25",
@@ -269,10 +269,10 @@
         "section_num": 4,
         "section": "Section 4: Facility Safety",
         "question": "Do you inspect your facilities regularly for unaddressed hazards and unsafe conditions? If so, how often are these inspections carried out?",
-        "written_ans": "true",
-        "written_ans_yes": "true",
+        "written_ans": true,
+        "written_ans_yes": true,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "26",
@@ -280,10 +280,10 @@
         "section_num": 4,
         "section": "Section 4: Facility Safety",
         "question": "Do you use a form or checklist to document building/facility inspections?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "27",
@@ -291,10 +291,10 @@
         "section_num": 4,
         "section": "Section 4: Facility Safety",
         "question": "Do you address each noted deficiency and prioritize repairs according to importance, based on life safety and cost?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "28",
@@ -302,10 +302,10 @@
         "section_num": 4,
         "section": "Section 4: Facility Safety",
         "question": "Are all buildings in compliance with all applicable fire and other safety codes?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "29",
@@ -313,10 +313,10 @@
         "section_num": 4,
         "section": "Section 4: Facility Safety",
         "question": "If fire detection and suppression systems are required by code are they present and tested periodically?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "30",
@@ -324,10 +324,10 @@
         "section_num": 5,
         "section": "Section 5: Cooperation With BRIM Loss Control Efforts",
         "question": "Do you understand that cooperation with BRIM and its vendors in scheduling meetings and other loss control efforts is a factor we consider in rating this questionnaire?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "31",
@@ -335,10 +335,10 @@
         "section_num": 5,
         "section": "Section 5: Cooperation With BRIM Loss Control Efforts",
         "question": "If received, have you submitted written responses to all BRIM and vendor recommendations within 45 days of receipt and substantially implemented all recommendations within 90 days of your submission; or as alternative to full implementation, submitted a plan of action (for BRIM approval) for addressing all recommendations?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     },
     {
         "id": "32",
@@ -346,9 +346,9 @@
         "section_num": 5,
         "section": "Section 5: Cooperation With BRIM Loss Control Efforts",
         "question": "Have you submitted the Loss Control Questionnaire form and supporting documentation by the published deadline?",
-        "written_ans": "false",
-        "written_ans_yes": "false",
+        "written_ans": false,
+        "written_ans_yes": false,
         "checklist": [],
-        "yes_no": "true"
+        "yes_no": true
     }
 ]
