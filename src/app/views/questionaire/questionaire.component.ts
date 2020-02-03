@@ -158,8 +158,18 @@ export class QuestionaireComponent implements OnInit {
    * @param questionObj {Response} - Response to corresponding question
    * @returns {boolean} - Whether corresponding question is answered
    */
-  hasResponded(questionObj: Response):boolean {
-    return questionObj.yesNo !== null || questionObj.written !== null;
+  hasResponded(questionObj: Response): boolean {
+    return (questionObj.yesNo !== null && questionObj.yesNo !== '' && 
+      this.validateYesNoResponse(questionObj.yesNo)) || 
+      (questionObj.written !== null && questionObj.written !== '');
+  }
+  /**
+   * Validate user's response to yes/no option
+   * @param yesNoStr {string} - User response to yes/no option
+   * @returns {boolean} - Whether user has a void response to yes/no option
+   */
+  validateYesNoResponse(yesNoStr: string): boolean {
+    return (yesNoStr === 'yes') || (yesNoStr === 'no');
   }
 
   /**
