@@ -21,7 +21,8 @@ interface AppState {
 })
 export class QuestionaireComponent implements OnInit {
   qs$: Observable<Question[]>;
-  questionsForm = this.fb.group({
+  // change naming convention, too confusing
+  questionsForm: FormGroup = this.fb.group({
     questions: this.fb.array(questions.map(q => this.fb.group({
       id: q.id,
       num: q.num,
@@ -30,31 +31,31 @@ export class QuestionaireComponent implements OnInit {
       written: '',
       checklist: this.fb.array(Array(q.checklist.length).fill(false))
     })))
-  })
-  section_cur = 0;
-  section_cur_done = 0;
-  section_num = (new Set(questions.map(q => q.section))).size;
-  section_titles = Array.from(new Set(questions.map(q => q.section)));
-  questions = questions.filter((q, i) => q.section_num === this.section_cur); // number of questions in current section
-  questions_count = 0; // number of questions in latest section
-  questions_done = 0; // questions done of latest section
-  questions_done_cur = 0; // questions done in current section
-  total_questions_done = 0; // number of questions done in total
-  total_question_count = questions.length; 
-  sticky = false;
+  });
+  // please refactor this into a new object
+  section_cur: number = 0;
+  section_cur_done: number = 0;
+  section_num: number = (new Set(questions.map(q => q.section))).size; // number of sections
+  section_titles: string[] = Array.from(new Set(questions.map(q => q.section)));
+  questions: Question[] = questions.filter((q, i) => q.section_num === this.section_cur); // questions in section
+  questions_count: number = 0; // number of questions in latest section
+  questions_done: number = 0; // questions done of latest section
+  questions_done_cur: number = 0; // questions done in current section
+  total_questions_done: number = 0; // number of questions done in total
+  total_question_count: number = questions.length; 
+  sticky: boolean = false;
 
   constructor(private fb: FormBuilder, private store: Store<AppState>, private questionService: QuestionService) { 
-    this.qs$ = this.store.select('questions');
+    store.select('questions').subscribe(s => this.qs$ = s);
     this.getQuestions();
   }
 
-  getQuestions() {
-    // this.store.dispatch(new QuestionsActions.GetQuestions());
-    this.questionService.getQuestions()
-      .subscribe(qs => this.qs$ = qs);
+  getQuestions(): void {
+    this.store.dispatch(new QuestionsActions.GetQuestions());
+    this.qs$ = this.questionService.getQuestions();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getQuestions();
     this._getSectionsDone(this.questionsForm.value.questions);
     this._getLatestQuestionsCount();
@@ -67,7 +68,7 @@ export class QuestionaireComponent implements OnInit {
       this._getQuestionsDoneTotal(data.questions);
     });
   }
-  handleClickNext() {
+  handleClickNext(): void {
     this._getSectionsDone(this.questionsForm.value.questions);
     this._getLatestQuestionsCount();
     // allow next only if all questions answered
@@ -79,7 +80,7 @@ export class QuestionaireComponent implements OnInit {
       window.scroll(0, 0);
     }
   }
-  handleClickBack() {
+  handleClickBack(): void {
     this._getSectionsDone(this.questionsForm.value.questions);
     this._getLatestQuestionsCount();
     if (this.section_cur > 1) {
@@ -89,38 +90,38 @@ export class QuestionaireComponent implements OnInit {
       window.scroll(0, 0);
     }
   }
-  _getQuestions() {
+  _getQuestions(): void {
     this.questions = questions.filter((q, i) => q.section_num === this.section_cur);
     this._getQuestionsDoneCur(this.questionsForm.value.questions);
     this._getQuestionsDone(this.questionsForm.value.questions);
   }
   // get count of number of questions done in lates section from form questions
-  _getQuestionsDone(questions_input) {
+  _getQuestionsDone(questions_input): void {
     let arr = questions_input.filter(q => {
       return (q.section_num === this.section_cur_done + 1) && (q.yesNo !== "" || q.written !== "")
     });
     this.questions_done = arr.length;
   }
-  _getQuestionsDoneCur(questions_input) {
+  _getQuestionsDoneCur(questions_input): void {
     let arr = questions_input.filter(q => {
       return (q.section_num === this.section_cur) && (q.yesNo !== "" || q.written !== "")
     });
     this.questions_done_cur = arr.length;
   }
-  _getQuestionsDoneTotal(questions_input) {
+  _getQuestionsDoneTotal(questions_input): void {
     let arr = questions_input.filter(q => {
       return (q.yesNo !== "" || q.written !== "")
     });
     this.total_questions_done = arr.length;
   }
   // get questions count of latest section
-  _getLatestQuestionsCount() {
+  _getLatestQuestionsCount(): void {
     let arr = questions.filter(q => {
       return q.section_num === this.section_cur_done + 1;
     })
     this.questions_count = arr.length;
   }
-  _getSectionsDone(questions_input) {
+  _getSectionsDone(questions_input): void {
     // get number of unfinished sections
     // filter out questions that have input, then map to section number and map to sets
     let arr = questions_input.filter(input => {
@@ -134,10 +135,10 @@ export class QuestionaireComponent implements OnInit {
     let section_nums = arr.map(q => q.section_num);
     this.section_cur_done = this.section_num - (new Set(section_nums)).size;
   }
-  handleSticky(stickyState: boolean) {
+  handleSticky(stickyState: boolean): void {
     this.sticky = stickyState;
   }
-  handleSectionNav(section_num: number) {
+  handleSectionNav(section_num: number): void {
     this.section_cur = section_num;
     this._getQuestions();
     this._getSectionsDone(this.questionsForm.value.questions);
@@ -145,10 +146,10 @@ export class QuestionaireComponent implements OnInit {
     document.getElementById('root').scroll(0, 0);
     window.scroll(0, 0);
   }
-  getDate() {
+  getDate(): string {
     return moment().format("MM-DD-YYYY");
   }
-  getTime() {
+  getTime(): string {
     return moment().format("h:mm a")
   }
 }
