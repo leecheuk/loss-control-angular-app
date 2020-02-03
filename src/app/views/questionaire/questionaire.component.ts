@@ -141,12 +141,14 @@ export class QuestionaireComponent implements OnInit {
     this.sticky = stickyState;
   }
   handleSectionNav(section_num: number): void {
-    this.section_cur = section_num;
-    this._getQuestions();
-    this._getSectionsDone(this.questionsForm.value.questions);
-    this._getLatestQuestionsCount();
-    document.getElementById('root').scroll(0, 0);
-    window.scroll(0, 0);
+    if (section_num !== this.section_cur && section_num <= this.section_num + 1 && section_num >= 1) {
+      this.section_cur = section_num;
+      this._getQuestions();
+      this._getSectionsDone(this.questionsForm.value.questions);
+      this._getLatestQuestionsCount();
+      document.getElementById('root').scroll(0, 0);
+      window.scroll(0, 0);
+    }
   }
   getDate(): string {
     return moment().format("MM-DD-YYYY");
