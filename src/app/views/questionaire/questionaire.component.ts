@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import moment from 'moment';
 import questions from '../../seed/data.json';
+// models
 import {Question} from '../../models/question';
+import {Response} from '../../models/response';
 // service
 import {QuestionService} from '../../services/question.service';
 // store
@@ -21,14 +23,14 @@ interface AppState {
 })
 export class QuestionaireComponent implements OnInit {
   qs$: Observable<Question[]>;
-  // change naming convention, too confusing
+  // change naming convention, too confusing, be consistent, camelCase or not
   questionsForm: FormGroup = this.fb.group({
     questions: this.fb.array(questions.map(q => this.fb.group({
       id: q.id,
       num: q.num,
       section_num: q.section_num,
-      yesNo: '',
-      written: '',
+      yesNo: null,
+      written: null,
       checklist: this.fb.array(Array(q.checklist.length).fill(false))
     })))
   });
@@ -96,21 +98,21 @@ export class QuestionaireComponent implements OnInit {
     this._getQuestionsDone(this.questionsForm.value.questions);
   }
   // get count of number of questions done in lates section from form questions
-  _getQuestionsDone(questions_input): void {
+  _getQuestionsDone(questions_input: Response[]): void {
     let arr = questions_input.filter(q => {
-      return (q.section_num === this.section_cur_done + 1) && (q.yesNo !== "" || q.written !== "")
+      return (q.section_num === this.section_cur_done + 1) && (q.yesNo !== null || q.written !== null)
     });
     this.questions_done = arr.length;
   }
-  _getQuestionsDoneCur(questions_input): void {
+  _getQuestionsDoneCur(questions_input: Response[]): void {
     let arr = questions_input.filter(q => {
-      return (q.section_num === this.section_cur) && (q.yesNo !== "" || q.written !== "")
+      return (q.section_num === this.section_cur) && (q.yesNo !== null || q.written !== null)
     });
     this.questions_done_cur = arr.length;
   }
-  _getQuestionsDoneTotal(questions_input): void {
+  _getQuestionsDoneTotal(questions_input: Response[]): void {
     let arr = questions_input.filter(q => {
-      return (q.yesNo !== "" || q.written !== "")
+      return (q.yesNo !== null || q.written !== null)
     });
     this.total_questions_done = arr.length;
   }
@@ -121,15 +123,15 @@ export class QuestionaireComponent implements OnInit {
     })
     this.questions_count = arr.length;
   }
-  _getSectionsDone(questions_input): void {
+  _getSectionsDone(questions_input: Response[]): void {
     // get number of unfinished sections
     // filter out questions that have input, then map to section number and map to sets
     let arr = questions_input.filter(input => {
       let qs = questions[input.num - 1]
       if (qs.yes_no === true) {
-        return input.yesNo === '';
+        return input.yesNo === null;
       } else {
-        return input.written === '';
+        return input.written === null;
       }
     });
     let section_nums = arr.map(q => q.section_num);
