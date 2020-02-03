@@ -11,8 +11,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './views/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { QuestionaireComponent } from './views/questionaire/questionaire.component';
-import { ReviewComponent } from './views/review/review.component';
-import { ReportComponent } from './views/report/report.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QuestionComponent } from './components/question/question.component';
@@ -27,8 +25,6 @@ import {questionsReducer} from './store/reducers/questions';
     HomeComponent,
     NavbarComponent,
     QuestionaireComponent,
-    ReviewComponent,
-    ReportComponent,
     LayoutComponent,
     QuestionComponent,
     ButtonComponent,
