@@ -59,6 +59,7 @@ export class QuestionaireComponent implements OnInit {
 
   ngOnInit(): void {
     this.getQuestions();
+    // this is too complicated, create Facade
     this._getSectionsDone(this.questionsForm.value.questions);
     this._getLatestQuestionsCount();
     this._getQuestionsDone(this.questionsForm.value.questions);
@@ -78,8 +79,7 @@ export class QuestionaireComponent implements OnInit {
       this.section_cur += 1;
       // this.section_cur_done += 1;
       this._getQuestions();
-      document.getElementById('root').scroll(0, 0);
-      window.scroll(0, 0);
+      this.scrollToTop();
     }
   }
   handleClickBack(): void {
@@ -88,8 +88,7 @@ export class QuestionaireComponent implements OnInit {
     if (this.section_cur > 1) {
       this.section_cur -= 1;
       this._getQuestions();
-      document.getElementById('root').scroll(0, 0);
-      window.scroll(0, 0);
+      this.scrollToTop();
     }
   }
   _getQuestions(): void {
@@ -100,19 +99,19 @@ export class QuestionaireComponent implements OnInit {
   // get count of number of questions done in lates section from form questions
   _getQuestionsDone(questions_input: Response[]): void {
     let arr = questions_input.filter(q => {
-      return (q.section_num === this.section_cur_done + 1) && (q.yesNo !== null || q.written !== null)
+      return (q.section_num === this.section_cur_done + 1) && this.hasResponded(q);
     });
     this.questions_done = arr.length;
   }
   _getQuestionsDoneCur(questions_input: Response[]): void {
     let arr = questions_input.filter(q => {
-      return (q.section_num === this.section_cur) && (q.yesNo !== null || q.written !== null)
+      return (q.section_num === this.section_cur) && this.hasResponded(q);
     });
     this.questions_done_cur = arr.length;
   }
   _getQuestionsDoneTotal(questions_input: Response[]): void {
     let arr = questions_input.filter(q => {
-      return (q.yesNo !== null || q.written !== null)
+      return this.hasResponded(q);
     });
     this.total_questions_done = arr.length;
   }
@@ -146,14 +145,39 @@ export class QuestionaireComponent implements OnInit {
       this._getQuestions();
       this._getSectionsDone(this.questionsForm.value.questions);
       this._getLatestQuestionsCount();
-      document.getElementById('root').scroll(0, 0);
-      window.scroll(0, 0);
+      this.scrollToTop();
     }
   }
+  /**
+   * Object-specific Methods
+   * Methods coupled with question properties, should be included in response class
+   */
+
+  /**
+   * Returns whether question is answered. 
+   * @param questionObj {Response} - Response to corresponding question
+   * @returns {boolean} - Whether corresponding question is answered
+   */
+  hasResponded(questionObj: Response):boolean {
+    return questionObj.yesNo !== null || questionObj.written !== null;
+  }
+
+  /**
+   * Helper Methods
+   * Can be refactored into util module
+   */
   getDate(): string {
     return moment().format("MM-DD-YYYY");
   }
   getTime(): string {
     return moment().format("h:mm a")
+  }
+  /**
+   * Scroll to page top
+   * @returns {void}
+   */
+  scrollToTop(): void {
+    document.getElementById('root').scroll(0, 0);
+    window.scroll(0, 0);
   }
 }
