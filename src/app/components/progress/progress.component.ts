@@ -28,7 +28,7 @@ export class ProgressComponent implements AfterViewInit {
 
   }
   // can't use HostListener, material angular conflicting it?
-  onScroll(e) {
+  onScroll(e): void {
     let el = document.getElementById('root');
     let w = window.pageYOffset;
     // 60 is the threshold
@@ -41,7 +41,7 @@ export class ProgressComponent implements AfterViewInit {
     this.stickyChanged.emit(this.sticky);
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     if (this.labelEls) {
       this.labelEls.forEach(e => {
         e.nativeElement.style.left = e.nativeElement.offsetWidth / 2 - 17 + 'px';
@@ -49,15 +49,15 @@ export class ProgressComponent implements AfterViewInit {
     }
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     window.addEventListener('scroll', this.onScroll.bind(this), true);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     window.removeEventListener('scroll', this.onScroll, true);
   }
- 
-  ngOnChanges(changes) {
+  // refactor this with a util function hasValueChanged
+  ngOnChanges(changes): void {
     let {
           section_num, 
           question_done, 
@@ -81,7 +81,7 @@ export class ProgressComponent implements AfterViewInit {
     }
   }
 
-  handleSectionClick(section_num) {
+  handleSectionClick(section_num): void {
     if (section_num <= this.section_cur_done + 1) {
       this.sectionCurChanged.emit(section_num);
     }

@@ -12,6 +12,6 @@ export class QuestionComponent implements OnInit {
 
   constructor(private controlContainer: ControlContainer) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 }

@@ -12,10 +12,10 @@ export type State = Observable<Question[]>;
 
 const initialState = of([]);
 
-export function questionsReducer(state: State = initialState, action: Action) {
+export function questionsReducer(state: State = initialState, action: Action): State {
     switch (action.type) {
         case QuestionActions.GET_QUESTIONS:
-            return [];
+            return of([]);
         default:
             return state;
     }
