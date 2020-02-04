@@ -17,7 +17,9 @@ import { QuestionComponent } from './components/question/question.component';
 import { ButtonComponent } from './components/button/button.component';
 import { ProgressComponent } from './components/progress/progress.component';
 import { StoreModule } from '@ngrx/store';
-import {questionsReducer} from './store/reducers/questions';
+import { questionsReducer } from './store/reducers/questions';
+import { EffectsModule } from '@ngrx/effects';
+import { QuestionsEffects } from './store/effects/questions';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,10 @@ import {questionsReducer} from './store/reducers/questions';
     MatCheckboxModule,
     StoreModule.forRoot({
       questions: questionsReducer
-    })
+    }),
+    EffectsModule.forRoot([
+      QuestionsEffects
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

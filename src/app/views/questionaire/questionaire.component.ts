@@ -1,19 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import moment from 'moment';
-import questions from '../../seed/data.json';
 // models
 import {Question} from '../../models/question';
 import {Response} from '../../models/response';
-// service
-import {QuestionService} from '../../services/question.service';
 // store
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import * as QuestionsActions from '../../store/actions/questions';
 
 interface AppState {
-  questions: Observable<Question[]>
+  questions: Question[]
 }
 
 @Component({
@@ -22,39 +18,55 @@ interface AppState {
   styleUrls: ['./questionaire.component.css']
 })
 export class QuestionaireComponent implements OnInit {
-  qs$: Observable<Question[]>;
+  allQuestions;
   // change naming convention, too confusing, be consistent, camelCase or not
-  questionsForm: FormGroup = this.fb.group({
-    questions: this.fb.array(questions.map(q => this.fb.group({
-      id: q.id,
-      num: q.num,
-      section_num: q.section_num,
-      yesNo: null,
-      written: null,
-      checklist: this.fb.array(Array(q.checklist.length).fill(false))
-    })))
-  });
+  questionsForm: FormGroup;
   // please refactor this into a new object
-  section_cur: number = 0;
-  section_cur_done: number = 0;
-  section_num: number = (new Set(questions.map(q => q.section))).size; // number of sections
-  section_titles: string[] = Array.from(new Set(questions.map(q => q.section)));
-  questions: Question[] = questions.filter((q, i) => q.section_num === this.section_cur); // questions in section
-  questions_count: number = 0; // number of questions in latest section
-  questions_done: number = 0; // questions done of latest section
-  questions_done_cur: number = 0; // questions done in current section
-  total_questions_done: number = 0; // number of questions done in total
-  total_question_count: number = questions.length; 
+  section_cur: number;
+  section_cur_done: number;
+  section_num: number; // number of sections
+  section_titles: string[];
+  questions: Question[]; // questions in section
+  questions_count: number; // number of questions in latest section
+  questions_done: number; // questions done of latest section
+  questions_done_cur: number; // questions done in current section
+  total_questions_done: number; // number of questions done in total
+  total_question_count: number; 
+  // DOM/view properties
   sticky: boolean = false;
+  loading: boolean = true;
 
-  constructor(private fb: FormBuilder, private store: Store<AppState>, private questionService: QuestionService) { 
-    store.select('questions').subscribe(s => this.qs$ = s);
+  constructor(private fb: FormBuilder, private store: Store<AppState>) { 
+    store.select('questions').subscribe(s => {
+        this.allQuestions = s;
+        this.questionsForm = this.fb.group({
+          questions: this.fb.array(this.allQuestions.map(q => this.fb.group({
+            id: q.id,
+            num: q.num,
+            section_num: q.section_num,
+            yesNo: null,
+            written: null,
+            checklist: this.fb.array(Array(q.checklist.length).fill(false))
+          })))
+        });
+        this.section_cur = 0;
+        this.section_cur_done = 0;
+        this.section_num = (new Set(this.allQuestions.map(q => q.section))).size; // number of sections
+        this.section_titles = Array.from(new Set(this.allQuestions.map(q => q.section)));
+        this.questions = this.allQuestions.filter((q, i) => q.section_num === this.section_cur); // questions in section
+        this.questions_count = 0; // number of questions in latest section
+        this.questions_done = 0; // questions done of latest section
+        this.questions_done_cur = 0; // questions done in current section
+        this.total_questions_done = 0; // number of questions done in total
+        this.total_question_count = this.allQuestions.length;
+        this.loading = false;
+      });
+      
     this.getQuestions();
   }
 
   getQuestions(): void {
     this.store.dispatch(new QuestionsActions.GetQuestions());
-    this.qs$ = this.questionService.getQuestions();
   }
 
   ngOnInit(): void {
@@ -92,7 +104,7 @@ export class QuestionaireComponent implements OnInit {
     }
   }
   _getQuestions(): void {
-    this.questions = questions.filter((q, i) => q.section_num === this.section_cur);
+    this.questions = this.allQuestions.filter((q, i) => q.section_num === this.section_cur);
     this._getQuestionsDoneCur(this.questionsForm.value.questions);
     this._getQuestionsDone(this.questionsForm.value.questions);
   }
@@ -117,7 +129,7 @@ export class QuestionaireComponent implements OnInit {
   }
   // get questions count of latest section
   _getLatestQuestionsCount(): void {
-    let arr = questions.filter(q => {
+    let arr = this.allQuestions.filter(q => {
       return q.section_num === this.section_cur_done + 1;
     })
     this.questions_count = arr.length;
@@ -126,7 +138,7 @@ export class QuestionaireComponent implements OnInit {
     // get number of unfinished sections
     // filter out questions that have input, then map to section number and map to sets
     let arr = questions_input.filter(input => {
-      let qs = questions[input.num - 1]
+      let qs = this.allQuestions[input.num - 1]
       if (qs.yes_no === true) {
         return input.yesNo === null;
       } else {
