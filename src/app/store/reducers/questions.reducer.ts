@@ -1,7 +1,7 @@
 import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Question } from '../../models';
-import * as QuestionsActions from '../actions/questions';
+import * as QuestionsActions from '../actions/questions.action';
 
 /**
  * Questions state design

@@ -5,7 +5,7 @@ import moment from 'moment';
 import {Question, Response} from '../../models';
 // store
 import { Store } from '@ngrx/store';
-import * as QuestionsActions from '../../store/actions/questions';
+import * as QuestionsActions from '../../store/actions/questions.action';
 // facade
 import { QuestionaireFacade } from "../../facade/questionaire.facade";
 

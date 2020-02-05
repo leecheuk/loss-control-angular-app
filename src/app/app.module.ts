@@ -17,9 +17,9 @@ import { QuestionComponent } from './components/question/question.component';
 import { ButtonComponent } from './components/button/button.component';
 import { ProgressComponent } from './components/progress/progress.component';
 import { StoreModule } from '@ngrx/store';
-import { questionsReducer } from './store/reducers/questions';
+import { questionsReducer } from './store/reducers/questions.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { QuestionsEffects } from './store/effects/questions';
+import { QuestionsEffects } from './store/effects/questions.effect';
 
 @NgModule({
   declarations: [

@@ -6,7 +6,7 @@ import { EMPTY } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import { QuestionService } from '../../services/question.service';
 import { Question } from 'src/app/models';
-import * as QuestionsActions from '../actions/questions';
+import * as QuestionsActions from '../actions/questions.action';
 
 @Injectable()
 export class QuestionsEffects {
