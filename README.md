@@ -15,5 +15,12 @@ ng serve --o
 ```
 
 ## Todo
-- refactor question to service
-- add store for state management (NgRx)
+- [x] refactor question to service
+- [x] add store for state management (NgRx)
+- [x] refactor questionaire component
+
+## Problems
+- QuestionaireFacade has become "god" object, need to refactor with SRP in mind
+- missing proper validation on text input (ie. censor some words, use autosuggestions to assist user input)
+- need UX research to assist navigation experience (ie. might need to add next/back button on progress banner component)
+- need notification for form input & submission feedback
