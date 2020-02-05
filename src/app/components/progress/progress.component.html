@@ -1,6 +1,6 @@
 <div class="progress-banner" [class.sticky]="sticky">
     <p class="progress-text">
-        {{sticky ? section_titles[section_cur - 1] + ' (' + total_progress + ')' : 'Progress ' + total_progress}}
+        {{sticky ? section_titles[section_num_current - 1] + ' (' + total_progress + ')' : 'Progress ' + total_progress}}
     </p>
     <div class="progress-group">
         <div class="progress" *ngFor="let i of loop_arr; index as j">
@@ -10,27 +10,27 @@
                 [style.display]="hover_section === j ? 'block' : 'none'">
                 {{section_titles[j]}}
             </div>
-            <div class="progress-here" *ngIf="section_cur === j + 1">
+            <div class="progress-here" *ngIf="section_num_current === j + 1">
 
             </div>
             <div class="progress-dot" 
                 [class.hover]="j <= hover_section && false" 
                 [style.transition]="'background-color 1ms forwards ' + (j+1)*55 + 'ms'"
-                [class.active]="j <= section_cur_done" 
+                [class.active]="j <= section_count_completed" 
                 (click)="handleSectionClick(j+1)"
                 (mouseover)="hover_section = j" 
                 (mouseleave)="hover_section = null">
             </div>
             <div class="progress-bar" 
-                [style.width]="j + 1 <= section_cur_done ? '100%' : j + 1 === section_cur_done + 1 ? progress : '0%'">
+                [style.width]="j + 1 <= section_count_completed ? '100%' : j + 1 === section_count_completed + 1 ? progress : '0%'">
             </div>
             <!-- <div class="progress-bar-hover"
                 [style.transition]="'width ' + 50 + 'ms ' + 'ease-in ' + j*55 + 'ms'" 
                 [style.width]="j < hover_section ? '100%': 0"></div> -->
             <div 
                 class="progress-dot-end" 
-                (click)="handleSectionClick(section_num + 1)"
-                [class.active]="section_cur_done === section_num">
+                (click)="handleSectionClick(section_count_total + 1)"
+                [class.active]="section_count_completed === section_count_total">
         
             </div>
         </div>

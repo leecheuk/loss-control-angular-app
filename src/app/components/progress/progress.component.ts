@@ -7,14 +7,14 @@ import { Component, QueryList, Input, Output, EventEmitter, ViewChild, ElementRe
 })
 export class ProgressComponent implements AfterViewInit {
 
-  @Input() section_num: number;
-  @Input() section_cur: number;
-  @Input() section_cur_done: number;
-  @Input() question_count: number;
-  @Input() question_done: number;
+  @Input() section_count_total: number;
+  @Input() section_num_current: number;
+  @Input() section_count_completed: number;
+  @Input() question_count_in_progress: number;
+  @Input() question_count_completed_in_progress: number;
   @Input() section_titles: string[];
-  @Input() total_question_count: number;
-  @Input() total_questions_done: number;
+  @Input() question_count_total: number;
+  @Input() question_count_completed: number;
   @Output() stickyChanged: EventEmitter<boolean> = new EventEmitter();
   @Output() sectionCurChanged: EventEmitter<number> = new EventEmitter();
   @ViewChildren("label") labelEls: QueryList<ElementRef>;
@@ -32,7 +32,7 @@ export class ProgressComponent implements AfterViewInit {
     let el = document.getElementById('root');
     let w = window.pageYOffset;
     // 60 is the threshold
-    if ((el.scrollTop >= 60 || w >= 60) && (this.section_cur <= this.section_num && this.section_cur !== 0)) {
+    if ((el.scrollTop >= 60 || w >= 60) && (this.section_num_current <= this.section_count_total && this.section_num_current !== 0)) {
       this.sticky = true;
     } else {
       this.sticky = false;
@@ -59,31 +59,31 @@ export class ProgressComponent implements AfterViewInit {
   // refactor this with a util function hasValueChanged
   ngOnChanges(changes): void {
     let {
-          section_num, 
-          question_done, 
-          question_count, 
-          total_question_count, 
-          total_questions_done
+          section_count_total, 
+          question_count_completed_in_progress, 
+          question_count_in_progress, 
+          question_count_total, 
+          question_count_completed
         } = changes;
-    // change in section_num
-    if (section_num && section_num.previousValue !== section_num.currentValue) {
-      this.loop_arr = Array(this.section_num).fill(0);
+    // change in section_count_total
+    if (section_count_total && section_count_total.previousValue !== section_count_total.currentValue) {
+      this.loop_arr = Array(this.section_count_total).fill(0);
     }
-    // change in total_questions_done or total_question_count for total progress
-    if ((total_questions_done && total_questions_done.previousValue !== total_questions_done.currentValue) || 
-      (total_question_count && total_question_count.previousValue !== total_question_count.currentValue)) {
-        this.total_progress = `${Math.floor(this.total_questions_done*100 / this.total_question_count)}%`;
+    // change in question_count_completed or question_count_total for total progress
+    if ((question_count_completed && question_count_completed.previousValue !== question_count_completed.currentValue) || 
+      (question_count_total && question_count_total.previousValue !== question_count_total.currentValue)) {
+        this.total_progress = `${Math.floor(this.question_count_completed*100 / this.question_count_total)}%`;
     }
-    // change in question_done or question_count for section progress
-    if ((question_done && question_done.previousValue !== question_done.currentValue) || 
-      (question_count && question_count.previousValue !== question_count.currentValue)) {
-        this.progress = `${Math.floor(this.question_done*100 / this.question_count)}%`;
+    // change in question_count_completed_in_progress or question_count_in_progress for section progress
+    if ((question_count_completed_in_progress && question_count_completed_in_progress.previousValue !== question_count_completed_in_progress.currentValue) || 
+      (question_count_in_progress && question_count_in_progress.previousValue !== question_count_in_progress.currentValue)) {
+        this.progress = `${Math.floor(this.question_count_completed_in_progress*100 / this.question_count_in_progress)}%`;
     }
   }
 
-  handleSectionClick(section_num): void {
-    if (section_num <= this.section_cur_done + 1) {
-      this.sectionCurChanged.emit(section_num);
+  handleSectionClick(section_count_total): void {
+    if (section_count_total <= this.section_count_completed + 1) {
+      this.sectionCurChanged.emit(section_count_total);
     }
   }
 

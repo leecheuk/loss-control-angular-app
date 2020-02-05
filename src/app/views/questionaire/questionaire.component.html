@@ -19,13 +19,13 @@
     </ng-container>
     <ng-container *ngIf="questionaireFacade.questionaire.sectionStatus.num_current > 0">
         <app-progress
-            [section_num]="questionaireFacade.questionaire.sectionStatus.count_total"
-            [section_cur]="questionaireFacade.questionaire.sectionStatus.num_current"
-            [section_cur_done]="questionaireFacade.questionaire.sectionStatus.count_completed"
-            [question_count]="questionaireFacade.questionaire.questionStatus.count_in_progress"
-            [question_done]="questionaireFacade.questionaire.questionStatus.count_completed_in_progress"
-            [total_question_count]="questionaireFacade.questionaire.questionStatus.count_total"
-            [total_questions_done]="questionaireFacade.questionaire.questionStatus.count_completed"
+            [section_count_total]="questionaireFacade.questionaire.sectionStatus.count_total"
+            [section_num_current]="questionaireFacade.questionaire.sectionStatus.num_current"
+            [section_count_completed]="questionaireFacade.questionaire.sectionStatus.count_completed"
+            [question_count_in_progress]="questionaireFacade.questionaire.questionStatus.count_in_progress"
+            [question_count_completed_in_progress]="questionaireFacade.questionaire.questionStatus.count_completed_in_progress"
+            [question_count_total]="questionaireFacade.questionaire.questionStatus.count_total"
+            [question_count_completed]="questionaireFacade.questionaire.questionStatus.count_completed"
             [section_titles]="questionaireFacade.section_titles"
             (stickyChanged)="handleSticky($event)"
             (sectionCurChanged)="handleSectionNav($event)"
