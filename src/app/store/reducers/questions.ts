@@ -1,6 +1,6 @@
 import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
-import { Question } from '../../models/question';
+import { Question } from '../../models';
 import * as QuestionsActions from '../actions/questions';
 
 /**

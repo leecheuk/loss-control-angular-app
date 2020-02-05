@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import moment from 'moment';
 // models
-import {Question} from '../../models/question';
-import {Response} from '../../models/response';
+import {Question, Response} from '../../models';
 // store
 import { Store } from '@ngrx/store';
 import * as QuestionsActions from '../../store/actions/questions';

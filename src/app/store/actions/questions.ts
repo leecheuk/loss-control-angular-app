@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Question } from 'src/app/models/question';
+import { Question } from 'src/app/models';
 
 // action constants
 export const GET_QUESTIONS = '[Questions] Get';

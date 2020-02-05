@@ -1,6 +1,6 @@
-import { Question } from './question';
-import { Questionaire } from './questionaire';
-import { Response } from './response';
-import { Section } from './section';
+import { Question } from './question.model';
+import { Questionaire } from './questionaire.model';
+import { Response } from './response.model';
+import { Section } from './section.model';
 
 export { Question, Questionaire, Response, Section };

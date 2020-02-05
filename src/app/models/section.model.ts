@@ -1,4 +1,4 @@
-import { Question } from './question';
+import { Question } from './question.model';
 
 export class Section {
     id: string;
