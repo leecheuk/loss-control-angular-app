@@ -9,11 +9,29 @@
  * @property {boolean[]} Response.checklist - Indicator of whether checklist items are checked or not
  */
 
- export interface Response {
+ interface IResponse {
      id: string;
      num: number;
      section_num: number;
-     yesNo: string | null;
+     yesNo: string | null; // change this to yes_no
      written: string | null;
      checklist: boolean[];
+ }
+
+ export class Response implements IResponse {
+    id: string;
+    num: number;
+    section_num: number;
+    yesNo: string | null; // change this to yes_no
+    written: string | null;
+    checklist: boolean[];
+
+    constructor(num: number, section_num: number, checklist: boolean[]) {
+        this.id = Math.random().toString(36).substring(2); // refactor this to utils
+        this.num = num;
+        this.section_num = section_num;
+        this.yesNo = null;
+        this.written = null;
+        this.checklist = checklist;
+    }
  }

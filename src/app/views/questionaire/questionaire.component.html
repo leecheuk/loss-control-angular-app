@@ -1,5 +1,5 @@
 <app-layout>
-    <ng-container *ngIf="section_cur === 0">
+    <ng-container *ngIf="questionaireFacade.questionaire.sectionStatus.num_current === 0">
         <h1 class="questionaire-title">Loss Control Questionaire</h1>
         <p class="questionaire-intro">
             This is a loss control questionaire intented to help you assess how to minimize losses in your operation. To begin, please click start.
@@ -13,45 +13,53 @@
             <li><div>Phone: </div> <div>(123) 456-7890</div></li>
         </ul>
         <div class="btn-group">
-            <app-button [disabled]="questions.length !== questions_done_cur" [title]="'Start'" id="btn-next"
-                (click)="handleClickNext()" *ngIf="section_cur !== 5"></app-button>
+            <app-button [title]="'Start'" id="btn-next"
+                (click)="handleClickNext()"></app-button>
         </div>
     </ng-container>
-    <ng-container *ngIf="section_cur > 0">
+    <ng-container *ngIf="questionaireFacade.questionaire.sectionStatus.num_current > 0">
         <app-progress
-            [section_num]="section_num"
-            [section_cur]="section_cur"
-            [section_cur_done]="section_cur_done"
-            [question_count]="questions_count"
-            [question_done]="questions_done"
-            [total_question_count]="total_question_count"
-            [total_questions_done]="total_questions_done"
-            [section_titles]="section_titles"
+            [section_num]="questionaireFacade.questionaire.sectionStatus.count_total"
+            [section_cur]="questionaireFacade.questionaire.sectionStatus.num_current"
+            [section_cur_done]="questionaireFacade.questionaire.sectionStatus.count_completed"
+            [question_count]="questionaireFacade.questionaire.questionStatus.count_in_progress"
+            [question_done]="questionaireFacade.questionaire.questionStatus.count_completed_in_progress"
+            [total_question_count]="questionaireFacade.questionaire.questionStatus.count_total"
+            [total_questions_done]="questionaireFacade.questionaire.questionStatus.count_completed"
+            [section_titles]="questionaireFacade.section_titles"
             (stickyChanged)="handleSticky($event)"
             (sectionCurChanged)="handleSectionNav($event)"
             ></app-progress>
-        <form [formGroup]="questionsForm" *ngIf="section_cur <= section_num">
+        <form [formGroup]="form" 
+            *ngIf="questionaireFacade.questionaire.sectionStatus.num_current <= 
+            questionaireFacade.questionaire.sectionStatus.count_total">
             <h1 
                 class="questionaire-title"
-                [style.marginTop]="sticky ? '180px' : ''">{{questions[0].section}}</h1>
+                [style.marginTop]="sticky ? '180px' : ''">
+                {{questionaireFacade.section_title}}
+            </h1>
             <br/>
             <div>
                 <app-question 
-                    [question]="question" [formGroup]="questionsForm.controls.questions.at(question.num - 1)"
-                    *ngFor="let question of questions; let i = index"></app-question>
+                    [question]="question" [formGroup]="form.controls.questions.at(question.num - 1)"
+                    *ngFor="let question of questionaireFacade.questions_current; let i = index"></app-question>
             </div>
             <div class="btn-group">
-                <app-button [title]="'Back'" id="btn-back" (click)="handleClickBack()" *ngIf="section_cur > 1"></app-button>
+                <app-button [title]="'Back'" id="btn-back" (click)="handleClickBack()" 
+                    *ngIf="questionaireFacade.questionaire.sectionStatus.num_current > 1"></app-button>
                 <app-button 
-                    [disabled]="questions.length !== questions_done_cur"
+                    [disabled]="questionaireFacade.questionaire.questionStatus.count_completed_current !==
+                        questionaireFacade.questionaire.questionStatus.count_current"
                     [title]="'Next'" 
                     id="btn-next" 
                     (click)="handleClickNext()" 
-                    *ngIf="section_cur <= 5"></app-button>
+                    *ngIf="questionaireFacade.questionaire.sectionStatus.num_current 
+                    <= questionaireFacade.questionaire.sectionStatus.count_total"></app-button>
             </div>
         </form>
     </ng-container>
-    <ng-container *ngIf="section_cur === section_num + 1">
+    <ng-container *ngIf="questionaireFacade.questionaire.sectionStatus.num_current === 
+            questionaireFacade.questionaire.sectionStatus.count_total + 1">
         <h1>Review</h1>
         <p>
             Confirm the following information is correct and submit the information. If any of the information is incorrect, please contact us with your
