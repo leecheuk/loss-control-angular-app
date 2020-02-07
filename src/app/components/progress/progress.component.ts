@@ -1,4 +1,15 @@
-import { Component, QueryList, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, ViewChildren } from '@angular/core';
+import { 
+  Component, 
+  QueryList, 
+  Input, 
+  Output, 
+  EventEmitter, 
+  ViewChild, 
+  ElementRef, 
+  AfterViewInit, 
+  ViewChildren, 
+  HostListener 
+} from '@angular/core';
 
 @Component({
   selector: 'app-progress',
@@ -23,22 +34,49 @@ export class ProgressComponent implements AfterViewInit {
   total_progress: string;
   hover_section: number;
   sticky: boolean; // which sticky state of banner
+  sticky_progress: boolean;
+  screen_width: number;
+  is_small_screen: boolean; // whether screen width is small
+  is_scrolling: boolean; // whether window is scrolling to top;
+  timer;
 
-  constructor() { 
+  constructor() {
 
   }
   // can't use HostListener, material angular conflicting it?
   onScroll(e): void {
+    this.shouldBannerStick();
+    this.shouldProgressMobileStick();
+    this.is_scrolling = true;
+    this.timer = setTimeout(() => {
+      this.is_scrolling = false;
+    }, 500);
+  }
+
+  shouldBannerStick(): void {
+    this.sticky = this.isScrolledOverThreshold(60);
+    this.stickyChanged.emit(this.sticky);
+  }
+
+  shouldProgressMobileStick(): void {
+    this.sticky_progress = this.isScrolledOverThreshold(56);
+  }
+
+  isScrolledOverThreshold(threshold: number): boolean {
     let el = document.getElementById('root');
     let w = window.pageYOffset;
-    // 60 is the threshold
-    if ((el.scrollTop >= 60 || w >= 60) && (this.section_num_current <= this.section_count_total && this.section_num_current !== 0)) {
-      this.sticky = true;
-    } else {
-      this.sticky = false;
-    }
-    
-    this.stickyChanged.emit(this.sticky);
+    let inSectionNumberRange = this.section_num_current <= this.section_count_total && this.section_num_current !== 0;
+    let scrollOverThreshold = el.scrollTop >= threshold || w >= threshold;
+    return scrollOverThreshold && inSectionNumberRange;
+  }
+
+  isSmallScreen(): void {
+    this.is_small_screen = window.innerWidth <= 700;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event): void {
+    this.isSmallScreen();
   }
 
   ngAfterViewInit(): void {
@@ -51,10 +89,14 @@ export class ProgressComponent implements AfterViewInit {
 
   ngOnInit(): void {
     window.addEventListener('scroll', this.onScroll.bind(this), true);
+    // initialize screen width
+    this.isSmallScreen();
   }
 
   ngOnDestroy(): void {
+    // prevent memory leaks, remove event listeners
     window.removeEventListener('scroll', this.onScroll, true);
+    clearTimeout(this.timer);
   }
   // refactor this with a util function hasValueChanged
   ngOnChanges(changes): void {

@@ -1,8 +1,15 @@
-<div class="progress-banner" [class.sticky]="sticky">
-    <p class="progress-text">
+<div class="progress-banner" [class.mobile]="is_small_screen" [class.sticky]="sticky">
+    <div 
+        class="progress-bar-mobile" 
+        [class.sticky]="sticky_progress"
+        [style.width]="is_scrolling && ! sticky_progress ? 0 : total_progress" 
+        *ngIf="is_small_screen">
+
+    </div>
+    <p class="progress-text" *ngIf="!is_small_screen || sticky">
         {{sticky ? section_titles[section_num_current - 1] + ' (' + total_progress + ')' : 'Progress ' + total_progress}}
     </p>
-    <div class="progress-group">
+    <div class="progress-group" *ngIf="!is_small_screen">
         <div class="progress" *ngFor="let i of loop_arr; index as j">
             <div 
                 #label 
