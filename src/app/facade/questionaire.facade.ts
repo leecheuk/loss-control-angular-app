@@ -1,5 +1,7 @@
 import { Question, Questionaire, Response, Section } from '../models';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+// utils
+import utils from '../utils';
 /**
  * NOTES:
  * Should move some data manipulation in the backend/services. It should be 
@@ -147,7 +149,7 @@ export class QuestionaireFacade {
     }
     // get form responses by section number
     getFormResponsesBySection(section_num: number): Response[] {
-        return this.form.value.questions.filter(r => r.section_num === section_num);
+        return this.getResponseInputs().filter(r => r.section_num === section_num);
     }
     // get all questions belonging to section by section number
     getQuestionsBySection(section_num: number): Question[] {
@@ -178,7 +180,7 @@ export class QuestionaireFacade {
     }
     // get number of questions completed in questionaire
     getQuestionsCountCompleted(): number {
-        return this.form.value.questions.filter(r => this.hasResponded(r)).length;
+        return this.getResponseInputs().filter(r => this.hasResponded(r)).length;
     }
     updateQuestionsCountCompleted(): void {
         let count = this.getQuestionsCountCompleted();
@@ -204,9 +206,9 @@ export class QuestionaireFacade {
         let arr = responses.filter(r => {
             let qs = this.questions[r.num - 1];
             if (qs.yes_no === true) {
-                return r.yesNo === null || r.yesNo === '';
+                return utils.isStrInvalid(r.yesNo);
             } else {
-                return r.written === null || r.written === '';
+                return utils.isStrInvalid(r.written);
             }
         });
         // get array of distinct section numbers that is not completed;
@@ -225,9 +227,9 @@ export class QuestionaireFacade {
      * @returns {boolean} - Whether corresponding question is answered
      */
     hasResponded(questionObj: Response): boolean {
-        return (questionObj.yesNo !== null && questionObj.yesNo !== '' &&
-            this.validateYesNoResponse(questionObj.yesNo)) ||
-            (questionObj.written !== null && questionObj.written !== '');
+        let { yesNo, written } = questionObj;
+        return (utils.isStrValid(yesNo) && this.validateYesNoResponse(yesNo)) ||
+            utils.isStrValid(written);
     }
     /**
      * Validate user's response to yes/no option
@@ -255,7 +257,7 @@ export class QuestionaireFacade {
             if (!(s instanceof Section)) {
                 s = new Section(q.section_num, q.section);
                 s.addQuestion(q);
-                sections[q.section_num] = s
+                sections[q.section_num] = s;
             } else {
                 sections[q.section_num].addQuestion(q);
                 
