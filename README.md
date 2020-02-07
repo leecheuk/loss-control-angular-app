@@ -24,3 +24,4 @@ ng serve --o
 - missing proper validation on text input (ie. censor some words, use autosuggestions to assist user input)
 - need UX research to assist navigation experience (ie. might need to add next/back button on progress banner component)
 - need notification for form input & submission feedback
+- need to make folder structure flatter
