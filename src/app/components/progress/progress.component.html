@@ -27,7 +27,8 @@
             <!-- <div class="progress-bar-hover"
                 [style.transition]="'width ' + 50 + 'ms ' + 'ease-in ' + j*55 + 'ms'" 
                 [style.width]="j < hover_section ? '100%': 0"></div> -->
-            <div class="progress-here end" *ngIf="section_count_completed === section_count_total && j + 1 === section_count_total">
+            <div class="progress-here end" 
+                *ngIf="section_count_completed === section_count_total && section_num_current === section_count_total + 1 && j + 1 === section_num_current - 1">
             </div>
             <div 
                 class="progress-dot-end" 
