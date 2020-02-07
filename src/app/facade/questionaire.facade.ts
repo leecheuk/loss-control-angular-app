@@ -37,6 +37,7 @@ export class QuestionaireFacade {
     startQuestionaire() {
         // set questionaire status
         this.questionaire.initializeStatus(
+        // update section complete status before increment
             this.questions.length,
             this.getSectionByNum(1).questions_count,
             this.sections.length
@@ -77,34 +78,20 @@ export class QuestionaireFacade {
     }
     // increment current section number
     incrementSectionNumCurrent(): void {
-        // update section complete status before increment
-        this.updateSectionsCountCompleted();
         this.questionaire.sectionStatus.num_current += 1;
-        this.updateQuestionsCountCurrent();
-        this.updateQuestionsCountInprogress();
-        this.updateQuestionsCountCompletedCurrent();
-        this.updateQuestions();
-        this.updateSectionTitleCurrent();
-        this.updateQuestionsCountCompletedInprogress();
-        this.updateQuestionsCountCompleted();
-        this.updateSectionNumInprogress();
+        this.updateStatus();
     }
     // decrement current section number
     decrementSectionNumCurrent(): void {
-        this.updateSectionsCountCompleted();
         this.questionaire.sectionStatus.num_current -= 1;
-        this.updateQuestionsCountCurrent();
-        this.updateQuestionsCountInprogress();
-        this.updateQuestionsCountCompletedCurrent();
-        this.updateQuestions();
-        this.updateSectionTitleCurrent();
-        this.updateQuestionsCountCompletedInprogress();
-        this.updateQuestionsCountCompleted();
-        this.updateSectionNumInprogress();
+        this.updateStatus();
     }
     setSectionNumCurrent(section_num: number): void {
-        this.updateSectionsCountCompleted();
         this.questionaire.sectionStatus.num_current = section_num
+        this.updateStatus();
+    }
+    updateStatus(): void {
+        this.updateSectionsCountCompleted();
         this.updateQuestionsCountCurrent();
         this.updateQuestionsCountInprogress();
         this.updateQuestionsCountCompletedCurrent();
