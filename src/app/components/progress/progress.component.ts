@@ -48,9 +48,13 @@ export class ProgressComponent implements AfterViewInit {
     this.shouldBannerStick();
     this.shouldProgressMobileStick();
     this.is_scrolling = true;
-    this.timer = setTimeout(() => {
-      this.is_scrolling = false;
-    }, 500);
+    if (this.sticky_progress) {
+      this.timer = setTimeout(() => {
+        this.is_scrolling = false;
+      }, 500);
+    } else {
+      clearTimeout(this.timer);
+    }
   }
 
   shouldBannerStick(): void {
@@ -82,7 +86,7 @@ export class ProgressComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     if (this.labelEls) {
       this.labelEls.forEach(e => {
-        e.nativeElement.style.left = e.nativeElement.offsetWidth / 2 - 17 + 'px';
+        e.nativeElement.style.left = '-' + e.nativeElement.offsetWidth / 2 + 11 + 'px';
       });
     }
   }
