@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import moment from 'moment';
 // utils
 import utils from '../../utils';
 // models
@@ -24,6 +23,7 @@ export class QuestionaireComponent implements OnInit {
   // DOM/view properties
   sticky: boolean = false;
   loading: boolean = true;
+  date: Date;
   // facade
   questionaireFacade;
   form: FormGroup;
@@ -57,6 +57,9 @@ export class QuestionaireComponent implements OnInit {
     let qf = this.questionaireFacade;
     if (qf.questionaire.sectionStatus.num_current === 0) {
       qf.startQuestionaire();
+    } else if (qf.questionaire.sectionStatus.num_current === qf.questionaire.sectionStatus.count_total) {
+      let date = Date.now();
+      this.date = new Date(date);
     }
     if (qf.questionaire.sectionStatus.num_current <= qf.questionaire.sectionStatus.count_total && 
       qf.questionaire.isCurrentSectionComplete()) {
@@ -78,22 +81,12 @@ export class QuestionaireComponent implements OnInit {
       this.questionaireFacade.setSectionNumCurrent(section_num);
       utils.scrollToTop();
     }
+    if (section_num === qf.questionaire.sectionStatus.count_total + 1) {
+      let date = Date.now();
+      this.date = new Date(date);
+    }
   }
   handleSticky(stickyState: boolean): void {
     this.sticky = stickyState;
-  }
-  /**
-   * Object-specific Methods
-   * Methods coupled with question properties, should be included in response class
-   */
-  /**
-   * Helper Methods
-   * Can be refactored into util module
-   */
-  getDate(): string {
-    return moment().format("MM-DD-YYYY");
-  }
-  getTime(): string {
-    return moment().format("h:mm a")
   }
 }

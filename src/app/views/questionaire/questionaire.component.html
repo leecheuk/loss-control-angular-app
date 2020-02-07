@@ -69,11 +69,11 @@
         <ul class="questionaire-account">
             <li>
                 <div>Date: </div>
-                <div>{{getDate()}}</div>
+                <div>{{date | date:'fullDate'}}</div>
             </li>
             <li>
                 <div>Time: </div>
-                <div>{{getTime()}}</div>
+                <div>{{date | date:'shortTime'}}</div>
             </li>
             <li>
                 <div>Organization: </div>
