@@ -25,3 +25,4 @@ ng serve --o
 - need UX research to assist navigation experience (ie. might need to add next/back button on progress banner component)
 - need notification for form input & submission feedback
 - need to make folder structure flatter
+- Since asking users to fill-in a questionaire is such an expensive operation, we should find a way to minimize the loss of data in the case of a disruption (ie. disconnected network) but in the same time prevent malicious actors from intercepting the data. So if we save responses to localStorage or indexedDB, we have to ensure we minimize malicious actors acting on the resource.
