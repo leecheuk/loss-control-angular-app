@@ -28,16 +28,16 @@ export class QuestionaireComponent implements OnInit {
   questionaireFacade;
   form: FormGroup;
   // subscriptions
-  formSubscription: SubscriptionLike;
-  storeSubscription: SubscriptionLike;
+  subscriptions: SubscriptionLike;
 
   constructor(private fb: FormBuilder, private store: Store<AppState>) { 
-    this.storeSubscription = store.select('questions').subscribe(s => {
+    let storeSubscription = store.select('questions').subscribe(s => {
         this.questionaireFacade = new QuestionaireFacade(s);
         this.questionaireFacade.initialize();
         this.form = this.questionaireFacade.createForm(fb);
         this.loading = false;
       });
+    this.subscriptions = storeSubscription;
     // fetch questions
     this.getQuestions();
   }
@@ -47,18 +47,18 @@ export class QuestionaireComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.formSubscription = this.form.valueChanges.subscribe(data => {
+    let formSubscription = this.form.valueChanges.subscribe(data => {
       this.questionaireFacade.updateQuestionsCountCompletedInprogressDuring();
       this.questionaireFacade.updateQuestionsCountCompletedCurrent();
       this.questionaireFacade.updateQuestionsCountCompleted();
     });
+    this.subscriptions.add(formSubscription);
   }
 
   // unsubscribe and clearTimeout to prevent memory leaks
   ngOnDestroy(): void {
     clearTimeout(this.timer);
-    this.storeSubscription.unsubscribe();
-    this.formSubscription.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
   /**
    * EVENT HANDLERS
