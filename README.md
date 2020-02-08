@@ -26,3 +26,6 @@ ng serve --o
 - need notification for form input & submission feedback
 - need to make folder structure flatter
 - Since asking users to fill-in a questionaire is such an expensive operation, we should find a way to minimize the loss of data in the case of a disruption (ie. disconnected network) but in the same time prevent malicious actors from intercepting the data. So if we save responses to localStorage or indexedDB, we have to ensure we minimize malicious actors acting on the resource.
+
+## Alternative implementation
+An easier way to implement this would be use store (NgRx) to manage the form responses and get form questions from services. The project was not initially expected to expand much further as deadline was 3 days. 
