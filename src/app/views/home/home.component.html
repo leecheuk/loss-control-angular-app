@@ -1,7 +1,7 @@
-<div class="home-main" #page>
+<div class="home-main" [style.opacity]="loading ? 0 : 1">
     <div class="home-message">
         <div class="home-img">
-            <img src="assets/images/image.jpg" />
+            <img src="assets/images/image.jpg" (loaded)="hasLoaded()"/>
         </div>
         <h1 class="home-title">
             Manage losses can be painless
@@ -15,6 +15,4 @@
         </a>
     </div>
 </div>
-<ng-template #loadingEl>
-    <p>loading</p>
-</ng-template>
+<app-loader *ngIf="loading"></app-loader>

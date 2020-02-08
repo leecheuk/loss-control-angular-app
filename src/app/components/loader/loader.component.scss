@@ -1,0 +1,30 @@
+@import '../../../assets/styles/variables';
+
+.loader-body {
+    padding-bottom: 150px;
+}
+.loader {
+    height: 100%;
+    width: 100%;
+    background: $primary-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 500;
+    color: #FFF;
+}
+.loader-icon {
+    height: 40px;
+    width: 40px;
+    transform: translateY(10px);
+    animation: jumping 450ms ease-in-out infinite alternate;
+}
+@keyframes jumping {
+    0% {
+        transform: translateY(10px);
+    }
+    to {
+        transform: translateY(5px);
+    }
+}
