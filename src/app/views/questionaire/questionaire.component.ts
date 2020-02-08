@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { SubscriptionLike } from 'rxjs';
 // models
 import {Question, Response} from '../../models';
 // store
@@ -26,9 +27,12 @@ export class QuestionaireComponent implements OnInit {
   // facade
   questionaireFacade;
   form: FormGroup;
+  // subscriptions
+  formSubscription: SubscriptionLike;
+  storeSubscription: SubscriptionLike;
 
   constructor(private fb: FormBuilder, private store: Store<AppState>) { 
-    store.select('questions').subscribe(s => {
+    this.storeSubscription = store.select('questions').subscribe(s => {
         this.questionaireFacade = new QuestionaireFacade(s);
         this.questionaireFacade.initialize();
         this.form = this.questionaireFacade.createForm(fb);
@@ -43,15 +47,18 @@ export class QuestionaireComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form.valueChanges.subscribe(data => {
+    this.formSubscription = this.form.valueChanges.subscribe(data => {
       this.questionaireFacade.updateQuestionsCountCompletedInprogressDuring();
       this.questionaireFacade.updateQuestionsCountCompletedCurrent();
       this.questionaireFacade.updateQuestionsCountCompleted();
     });
   }
 
+  // unsubscribe and clearTimeout to prevent memory leaks
   ngOnDestroy(): void {
     clearTimeout(this.timer);
+    this.storeSubscription.unsubscribe();
+    this.formSubscription.unsubscribe();
   }
   /**
    * EVENT HANDLERS
