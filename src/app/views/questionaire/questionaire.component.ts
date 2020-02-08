@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { SubscriptionLike } from 'rxjs';
+import { Subscription } from 'rxjs';
 // models
 import {Question, Response} from '../../models';
 // store
@@ -28,7 +28,7 @@ export class QuestionaireComponent implements OnInit {
   questionaireFacade;
   form: FormGroup;
   // subscriptions
-  subscriptions: SubscriptionLike;
+  subscriptions: Subscription;
 
   constructor(private fb: FormBuilder, private store: Store<AppState>) { 
     let storeSubscription = store.select('questions').subscribe(s => {
