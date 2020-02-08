@@ -27,6 +27,7 @@
 }
 .progress-banner.sticky .progress-group {
     margin-left: 15px;
+    justify-content: start;
 }
 .progress {
     height: 6px;
@@ -38,11 +39,18 @@
 }
 .progress-group {
     display: flex;
+    justify-content: center;
 }
 .progress-text {
     margin-top: 0;
     font-weight: 500;
     margin-bottom: 25px;
+    margin-left: -14px;
+    text-align: center;
+}
+.progress-banner.sticky .progress-text {
+    margin-left: 0;
+    text-align: left;
 }
 .progress-here {
     height: 0;
@@ -138,7 +146,7 @@
     top: 0;
     transition-delay: 50ms;
 }
-.progress-banner.mobile.sticky > .progress-text {
+.progress-banner.mobile.sticky > .progress-body > .progress-text {
     margin: 20px 0;
     font-size: 18px;
 }
@@ -147,4 +155,9 @@
 }
 .progress-banner.mobile.sticky {
     padding: 30px;
+}
+.progress-body {
+    max-width: 1110px;
+    width: 100%;
+    margin: auto;
 }
