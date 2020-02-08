@@ -30,4 +30,18 @@
     .radio-button:last-child {
         margin-right: 0;
     }
+    .question {
+        flex-direction: column;
+    }
+    .question-right {
+        margin: auto;
+        margin-top: 60px;
+    }
+    .question-right .radio-button {
+        margin-left: 0;
+    }
+    .question-right .radio-button:first-child {
+        margin-right: 80px;
+    }
 }
+
