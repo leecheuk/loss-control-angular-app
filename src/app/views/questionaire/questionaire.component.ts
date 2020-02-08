@@ -15,7 +15,7 @@ interface AppState {
 @Component({
   selector: 'app-questionaire',
   templateUrl: './questionaire.component.html',
-  styleUrls: ['./questionaire.component.css']
+  styleUrls: ['./questionaire.component.scss']
 })
 export class QuestionaireComponent implements OnInit {
   // DOM/view properties
