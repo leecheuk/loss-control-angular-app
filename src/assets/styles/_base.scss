@@ -1,0 +1,30 @@
+/**
+ * BASE CSS
+ */
+
+* {
+    font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#root {
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+}
+.content-main {
+    flex: 1;
+    position: relative;
+    min-height: 600px;
+}
+html, body { 
+    margin: 0;
+    height: 100%; 
+    width: 100% 
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
