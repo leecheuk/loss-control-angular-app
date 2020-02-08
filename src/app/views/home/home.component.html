@@ -1,5 +1,8 @@
-<div class="home-main">
+<div class="home-main" #page>
     <div class="home-message">
+        <div class="home-img">
+            <img src="assets/images/image.jpg" />
+        </div>
         <h1 class="home-title">
             Manage losses can be painless
         </h1>
@@ -12,3 +15,6 @@
         </a>
     </div>
 </div>
+<ng-template #loadingEl>
+    <p>loading</p>
+</ng-template>

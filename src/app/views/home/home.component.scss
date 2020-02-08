@@ -1,5 +1,4 @@
 .home-main {
-    background-image: url('/assets/images/image.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top;
@@ -7,7 +6,21 @@
     width: 100%;
     position: absolute;
     top: 0;
-    padding-bottom: 200px;
+}
+.home-img {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.home-img img {
+    height: 100%;
+    width: 100%;
+    object-position: left;
+    object-fit: cover;
 }
 .home-message {
     height: 100%;
