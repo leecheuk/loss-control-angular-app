@@ -1,13 +1,5 @@
 const utils = {
     /**
-     * Scroll to page top
-     * @returns {void}
-     */
-    scrollToTop(): void {
-        document.getElementById('root').scroll(0, 0);
-        window.scroll(0, 0);
-    },
-    /**
      * Check if string valid
      * @param str {string} - String to check if valid
      * @returns {boolean}

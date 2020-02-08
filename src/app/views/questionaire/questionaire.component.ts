@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-// utils
-import utils from '../../utils';
 // models
 import {Question, Response} from '../../models';
 // store
@@ -24,6 +22,7 @@ export class QuestionaireComponent implements OnInit {
   sticky: boolean = false;
   loading: boolean = true;
   date: Date;
+  timer;
   // facade
   questionaireFacade;
   form: FormGroup;
@@ -50,6 +49,10 @@ export class QuestionaireComponent implements OnInit {
       this.questionaireFacade.updateQuestionsCountCompleted();
     });
   }
+
+  ngOnDestroy(): void {
+    clearTimeout(this.timer);
+  }
   /**
    * EVENT HANDLERS
    */
@@ -64,14 +67,14 @@ export class QuestionaireComponent implements OnInit {
     if (qf.questionaire.sectionStatus.num_current <= qf.questionaire.sectionStatus.count_total && 
       qf.questionaire.isCurrentSectionComplete()) {
         qf.incrementSectionNumCurrent();
-        utils.scrollToTop();
+        this.scrollToTop();
     }
   }
   handleClickBack(): void {
     let qf = this.questionaireFacade;
     if (qf.questionaire.sectionStatus.num_current > 1) {
       qf.decrementSectionNumCurrent();
-      utils.scrollToTop();
+      this.scrollToTop();
     }
   }
   handleSectionNav(section_num: number): void {
@@ -79,7 +82,7 @@ export class QuestionaireComponent implements OnInit {
     if (section_num !== qf.questionaire.sectionStatus.num_current 
       && section_num <= qf.questionaire.sectionStatus.count_completed + 1 && section_num >= 1) {
       this.questionaireFacade.setSectionNumCurrent(section_num);
-      utils.scrollToTop();
+      this.scrollToTop();
     }
     if (section_num === qf.questionaire.sectionStatus.count_total + 1) {
       let date = Date.now();
@@ -88,5 +91,16 @@ export class QuestionaireComponent implements OnInit {
   }
   handleSticky(stickyState: boolean): void {
     this.sticky = stickyState;
+  }
+
+  /**
+   * Scroll to page top
+   * @returns {void}
+   */
+  // we should wrap window as service
+  scrollToTop(): void {
+    this.timer = setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
   }
 }
