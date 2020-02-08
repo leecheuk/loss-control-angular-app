@@ -78,17 +78,22 @@ export class ProgressComponent implements AfterViewInit {
     this.is_small_screen = window.innerWidth <= 700;
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event): void {
-    this.isSmallScreen();
-  }
-
-  ngAfterViewInit(): void {
+  repositionSectionLabels(): void {
     if (this.labelEls) {
       this.labelEls.forEach(e => {
         e.nativeElement.style.left = '-' + e.nativeElement.offsetWidth / 2 + 11 + 'px';
       });
     }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event): void {
+    this.isSmallScreen();
+    this.repositionSectionLabels();
+  }
+
+  ngAfterViewInit(): void {
+    this.repositionSectionLabels();
   }
 
   ngOnInit(): void {
