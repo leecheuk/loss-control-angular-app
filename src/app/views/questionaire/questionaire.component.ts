@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 // models
@@ -18,7 +18,7 @@ interface AppState {
   templateUrl: './questionaire.component.html',
   styleUrls: ['./questionaire.component.scss']
 })
-export class QuestionaireComponent implements OnInit {
+export class QuestionaireComponent implements OnInit, OnDestroy {
   // DOM/view properties
   sticky: boolean = false;
   loading: boolean = true;
@@ -59,6 +59,7 @@ export class QuestionaireComponent implements OnInit {
   ngOnDestroy(): void {
     clearTimeout(this.timer);
     this.subscriptions.unsubscribe();
+    this.questionaireFacade.unsetForm();
   }
   /**
    * EVENT HANDLERS

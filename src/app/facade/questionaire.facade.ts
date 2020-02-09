@@ -25,16 +25,23 @@ export class QuestionaireFacade {
         this.questions = questions;
     }
 
+    /**
+     * Unset FormGroup.
+     */
+    unsetForm(): void {
+        this.form = undefined; 
+    }
+
     // initialize questionaire
     // map questions to their corresponding sections
-    initialize() {
+    initialize(): void {
         this.mapQuestionsToSections();
         this.mapQuestionsToResponses();
     }
     /**
      * Initialize questionaire status when user clicks start
      */
-    startQuestionaire() {
+    startQuestionaire(): void {
         // set questionaire status
         this.questionaire.initializeStatus(
         // update section complete status before increment
