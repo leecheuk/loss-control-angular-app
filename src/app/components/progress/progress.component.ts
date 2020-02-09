@@ -20,6 +20,7 @@ export class ProgressComponent implements AfterViewInit {
 
   @Input() section_count_total: number;
   @Input() section_num_current: number;
+  @Input() section_num_in_progress: number;
   @Input() section_count_completed: number;
   @Input() question_count_in_progress: number;
   @Input() question_count_completed_in_progress: number;

@@ -119,8 +119,10 @@ export class QuestionaireFacade {
         return responses.filter( r => this.hasResponded(r)).length;
     }
     updateQuestionsCountCompletedInprogressDuring(): void {
-        let count = this.getQuestionsCountCompletedInprogressDuring();
-        this.questionaire.questionCountCompletedInprogress = count;
+        if (this.questionaire.sectionNumCurrent === this.questionaire.sectionNumInprogress) {
+            let count = this.getQuestionsCountCompletedInprogressDuring();
+            this.questionaire.questionCountCompletedInprogress = count;
+        }
     }
     updateQuestionsCountInprogress(): void {
         let count = this.getQuestionsCountInprogress();

@@ -114,6 +114,14 @@ export interface IQuestionaire {
         return this.sectionStatus.count_completed;
     }
 
+    set sectionCountTotal(count: number) {
+        this.sectionStatus.count_total = count;
+    }
+
+    get sectionCountTotal(): number {
+        return this.sectionStatus.count_total;
+    }
+
     /**
      * Question Status setters & getters
      */

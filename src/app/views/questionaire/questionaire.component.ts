@@ -66,13 +66,13 @@ export class QuestionaireComponent implements OnInit, OnDestroy {
    */
   handleClickNext(): void {
     let qf = this.questionaireFacade;
-    if (qf.questionaire.sectionStatus.num_current === 0) {
+    if (qf.questionaire.sectionNumCurrent === 0) {
       qf.startQuestionaire();
-    } else if (qf.questionaire.sectionStatus.num_current === qf.questionaire.sectionStatus.count_total) {
+    } else if (qf.questionaire.sectionNumCurrent === qf.questionaire.sectionCountTotal) {
       let date = Date.now();
       this.date = new Date(date);
     }
-    if (qf.questionaire.sectionStatus.num_current <= qf.questionaire.sectionStatus.count_total && 
+    if (qf.questionaire.sectionNumCurrent <= qf.questionaire.sectionCountTotal && 
       qf.questionaire.isCurrentSectionComplete()) {
         qf.incrementSectionNumCurrent();
         this.scrollToTop();
@@ -80,19 +80,31 @@ export class QuestionaireComponent implements OnInit, OnDestroy {
   }
   handleClickBack(): void {
     let qf = this.questionaireFacade;
-    if (qf.questionaire.sectionStatus.num_current > 1) {
-      qf.decrementSectionNumCurrent();
-      this.scrollToTop();
+    let isSectionComplete = qf.questionaire.isCurrentSectionComplete();
+    let isSectionInprogress = qf.questionaire.sectionNumCurrent === qf.questionaire.sectionNumInprogress;
+    if (isSectionInprogress && qf.questionaire.sectionNumCurrent > 1) {
+        qf.decrementSectionNumCurrent();
+        this.scrollToTop();
+    } else if (isSectionComplete && qf.questionaire.sectionNumCurrent > 1) {
+        qf.decrementSectionNumCurrent();
+        this.scrollToTop();
     }
   }
   handleSectionNav(section_num: number): void {
     let qf = this.questionaireFacade;
-    if (section_num !== qf.questionaire.sectionStatus.num_current 
-      && section_num <= qf.questionaire.sectionStatus.count_completed + 1 && section_num >= 1) {
-      this.questionaireFacade.setSectionNumCurrent(section_num);
-      this.scrollToTop();
+    let isCurrentSection = section_num === qf.questionaire.sectionNumCurrent;
+    let isSectionInRange = section_num <= qf.questionaire.sectionStatus.count_completed + 1 && section_num >= 1;
+    let isSubmissionSection = section_num === qf.questionaire.sectionCountTotal + 1;
+    let isSectionComplete = qf.questionaire.isCurrentSectionComplete();
+    let isSectionInprogress = qf.questionaire.sectionNumCurrent === qf.questionaire.sectionNumInprogress;
+    if (isSectionInprogress && (!isCurrentSection && isSectionInRange)) {
+        this.questionaireFacade.setSectionNumCurrent(section_num);
+        this.scrollToTop();  
+    } else if (!isCurrentSection && isSectionComplete && isSectionInRange) {
+        this.questionaireFacade.setSectionNumCurrent(section_num);
+        this.scrollToTop();
     }
-    if (section_num === qf.questionaire.sectionStatus.count_total + 1) {
+    if (isSubmissionSection) {
       let date = Date.now();
       this.date = new Date(date);
     }

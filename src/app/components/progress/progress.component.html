@@ -34,7 +34,7 @@
                     (mouseover)="hover_section = j" (mouseleave)="hover_section = null">
                 </div>
                 <div class="progress-bar"
-                    [style.width]="j + 1 <= section_count_completed ? '100%' : j + 1 === section_count_completed + 1 ? progress : '0%'">
+                    [style.width]="j + 1 < section_num_in_progress ? '100%' : j + 1 === section_num_in_progress ? progress : '0%'">
                 </div>
                 <!-- <div class="progress-bar-hover"
                         [style.transition]="'width ' + 50 + 'ms ' + 'ease-in ' + j*55 + 'ms'" 
