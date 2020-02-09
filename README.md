@@ -49,4 +49,5 @@ Checklist before production.
 - [ ] expire, obfuscate & encode sensitive user information
 - [ ] check if user information handling comply with sales contract of product & services (user stories/specification)
 - [ ] prepare images & instructions for end user manual content 
+- [ ] optimize performance & decrease build bundle size
 - [ ] QA
