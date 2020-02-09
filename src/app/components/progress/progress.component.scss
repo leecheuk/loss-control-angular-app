@@ -56,6 +56,8 @@
 .progress-banner.sticky .progress-text {
     margin-left: 0;
     text-align: left;
+}
+.progress-banner.sticky.mobile .progress-text {
     margin: 0 15px;
 }
 .progress-here {
