@@ -99,6 +99,13 @@ export class QuestionaireComponent implements OnInit {
   handleSticky(stickyState: boolean): void {
     this.sticky = stickyState;
   }
+  handleSectionNavClicked(direction): void {
+    if (direction === 'forward') {
+      this.handleClickNext();
+    } else if (direction === 'back') {
+      this.handleClickBack();
+    }
+  }
 
   /**
    * Scroll to page top

@@ -28,7 +28,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     HomeComponent,
     NavbarComponent,
     LoadDirective,
-    LoaderComponent
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

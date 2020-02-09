@@ -1,0 +1,29 @@
+.btn-nav {
+    cursor: pointer;
+    display: inline;
+    position: relative;
+    user-select: none;
+}
+.btn-nav:hover::after {
+    content: "";
+    height: 35px;
+    width: 35px;
+    background: #eee;
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+    transform: translate(-10px, -10px);
+    transition: all 200ms ease;
+}
+.btn-nav.forward:hover::after {
+    transform: translate(-7px, -10px);
+}
+.btn-nav:hover .mat-icon{
+    color: #777;
+}
+.btn-nav .mat-icon {
+    transform: translateY(4px);
+    color: #ccc;
+}

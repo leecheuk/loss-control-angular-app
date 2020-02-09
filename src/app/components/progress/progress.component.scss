@@ -48,9 +48,15 @@
     margin-left: -14px;
     text-align: center;
 }
+.progress-banner.mobile .progress-text-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 .progress-banner.sticky .progress-text {
     margin-left: 0;
     text-align: left;
+    margin: 0 15px;
 }
 .progress-here {
     height: 0;
@@ -146,9 +152,9 @@
     top: 0;
     transition-delay: 50ms;
 }
-.progress-banner.mobile.sticky > .progress-body > .progress-text {
-    margin: 20px 0;
+.progress-banner.mobile.sticky .progress-body .progress-text {
     font-size: 18px;
+    margin-bottom: 0;
 }
 .progress-banner.mobile {
     padding: 0;

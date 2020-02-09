@@ -28,6 +28,7 @@ export class ProgressComponent implements AfterViewInit {
   @Input() question_count_completed: number;
   @Output() stickyChanged: EventEmitter<boolean> = new EventEmitter();
   @Output() sectionCurChanged: EventEmitter<number> = new EventEmitter();
+  @Output() sectionNavClicked: EventEmitter<string> = new EventEmitter();
   @ViewChildren("label") labelEls: QueryList<ElementRef>;
   loop_arr: number[]; // array holder for loops
   progress: string;
@@ -136,6 +137,10 @@ export class ProgressComponent implements AfterViewInit {
     if (section_count_total <= this.section_count_completed + 1) {
       this.sectionCurChanged.emit(section_count_total);
     }
+  }
+
+  handleNavClick(direction: string): void {
+    this.sectionNavClicked.emit(direction);
   }
 
 }

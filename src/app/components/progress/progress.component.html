@@ -7,9 +7,19 @@
 
     </div>
     <div class="progress-body">
-        <p class="progress-text" *ngIf="!is_small_screen || sticky">
-            {{sticky ? section_titles[section_num_current - 1] + ' (' + total_progress + ')' : 'Progress ' + total_progress}}
-        </p>
+        <div class="progress-text-container" *ngIf="!is_small_screen || sticky">
+            <div class="btn-progress btn-back" *ngIf="is_small_screen" (click)="handleNavClick('back')">
+                <app-navbtn
+                 type="back"></app-navbtn>
+            </div>
+            <div class="progress-text">
+                {{sticky ? section_titles[section_num_current - 1] + ' (' + total_progress + ')' : 'Progress ' + total_progress}}
+            </div>
+            <div class="btn-progress btn-forward" *ngIf="is_small_screen" (click)="handleNavClick('forward')">
+                <app-navbtn
+                 type="forward"></app-navbtn>
+            </div>
+        </div>
         <div class="progress-group" *ngIf="!is_small_screen">
             <div class="progress" *ngFor="let i of loop_arr; index as j">
                 <div #label class="progress-label" [style.display]="hover_section === j ? 'block' : 'none'">

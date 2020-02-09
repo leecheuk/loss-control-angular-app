@@ -29,6 +29,7 @@
             [section_titles]="questionaireFacade.section_titles"
             (stickyChanged)="handleSticky($event)"
             (sectionCurChanged)="handleSectionNav($event)"
+            (sectionNavClicked)="handleSectionNavClicked($event)"
             ></app-progress>
         <form [formGroup]="form" 
             *ngIf="questionaireFacade.questionaire.sectionStatus.num_current <= 
