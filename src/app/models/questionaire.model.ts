@@ -86,6 +86,10 @@ export interface IQuestionaire {
         return this.questionStatus.count_completed_current === this.questionStatus.count_current;
     }
 
+    isCurrentSectionInprogress(): boolean {
+        return this.sectionStatus.num_current === this.sectionStatus.num_in_progress;
+    }
+
     /**
      * Section Status setters & getters
      */

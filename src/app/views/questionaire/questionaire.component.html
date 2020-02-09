@@ -48,6 +48,8 @@
             </div>
             <div class="btn-group">
                 <app-button [title]="'Back'" id="btn-back" (click)="handleClickBack()" 
+                    [disabled]="!questionaireFacade.questionaire.isCurrentSectionInprogress() && 
+                        !questionaireFacade.questionaire.isCurrentSectionComplete()"
                     *ngIf="questionaireFacade.questionaire.sectionStatus.num_current > 1"></app-button>
                 <app-button 
                     [disabled]="questionaireFacade.questionaire.questionStatus.count_completed_current !==
