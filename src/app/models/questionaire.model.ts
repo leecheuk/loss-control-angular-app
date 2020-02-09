@@ -85,5 +85,76 @@ export interface IQuestionaire {
     isCurrentSectionComplete(): boolean {
         return this.questionStatus.count_completed_current === this.questionStatus.count_current;
     }
+
+    /**
+     * Section Status setters & getters
+     */
     
+    set sectionNumCurrent(section_num: number) {
+        this.sectionStatus.num_current = section_num;
+    }
+
+    get sectionNumCurrent(): number {
+        return this.sectionStatus.num_current;
+    }
+
+    set sectionNumInprogress(section_num: number) {
+        this.sectionStatus.num_in_progress = section_num;
+    }
+
+    get sectionNumInprogress(): number {
+        return this.sectionStatus.num_in_progress;
+    }
+
+    set sectionCountCompleted(count: number) {
+        this.sectionStatus.count_completed = count;
+    }
+
+    get sectionCountCompleted(): number {
+        return this.sectionStatus.count_completed;
+    }
+
+    /**
+     * Question Status setters & getters
+     */
+
+    set questionCountCompletedInprogress(count: number) {
+        this.questionStatus.count_completed_in_progress = count;
+    }
+
+    get questionCountCompletedInprogress(): number {
+        return this.questionStatus.count_completed_in_progress;
+    }
+
+    set questionCountInprogress(count: number) {
+        this.questionStatus.count_in_progress = count;
+    }
+
+    get questionCountInprogress(): number {
+        return this.questionStatus.count_in_progress;
+    }
+
+    set questionCountCurrent(count: number) {
+        this.questionStatus.count_current = count;
+    }
+    
+    get questionCountCurrent() {
+        return this.questionStatus.count_current;
+    }
+
+    set questionCountCompleted(count: number) {
+        this.questionStatus.count_completed = count;
+    }
+
+    get questionCountCompleted() {
+        return this.questionStatus.count_completed;
+    }
+
+    set questionCountCompletedCurrent(count: number) {
+        this.questionStatus.count_completed_current = count;
+    }
+
+    get questionCountCompletedCurrent(): number {
+        return this.questionStatus.count_completed_current;
+    }
 }

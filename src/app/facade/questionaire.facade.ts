@@ -62,7 +62,7 @@ export class QuestionaireFacade {
         return this.form.value.questions;
     }
     // use this to update 
-    getSectionByNum(section_num): Section {
+    getSectionByNum(section_num: number): Section {
         return this.sections.filter(s => s.num === section_num)[0];
     }
     /**
@@ -70,31 +70,31 @@ export class QuestionaireFacade {
      */
     
     // update current section number
-    updateSectionNumCurrent(section_num): void {
-        this.questionaire.sectionStatus.num_current = section_num;
+    updateSectionNumCurrent(section_num: number): void {
+        this.questionaire.sectionNumCurrent = section_num;
     }
     // update current section title 
     updateSectionTitleCurrent(): void {
-        let section_num = this.questionaire.sectionStatus.num_current;
+        let section_num = this.questionaire.sectionNumCurrent;
         this.section_title = this.section_titles[section_num - 1];
     }
     // set in-progress section number
     updateSectionNumInprogress(): void {
         let section_num = this.getSectionsCountCompleted();
-        this.questionaire.sectionStatus.num_in_progress = section_num + 1;
+        this.questionaire.sectionNumInprogress = section_num + 1;
     }
     // increment current section number
     incrementSectionNumCurrent(): void {
-        this.questionaire.sectionStatus.num_current += 1;
+        this.questionaire.sectionNumCurrent += 1;
         this.updateStatus();
     }
     // decrement current section number
     decrementSectionNumCurrent(): void {
-        this.questionaire.sectionStatus.num_current -= 1;
+        this.questionaire.sectionNumCurrent -= 1;
         this.updateStatus();
     }
     setSectionNumCurrent(section_num: number): void {
-        this.questionaire.sectionStatus.num_current = section_num
+        this.questionaire.sectionNumCurrent = section_num
         this.updateStatus();
     }
     updateStatus(): void {
@@ -114,17 +114,17 @@ export class QuestionaireFacade {
         return this.getQuestionsBySection(count+ 1).length;
     }
     getQuestionsCountCompletedInprogressDuring(): number {
-        let section_num = this.questionaire.sectionStatus.num_current;
+        let section_num = this.questionaire.sectionNumCurrent;
         let responses = this.getFormResponsesBySection(section_num);
         return responses.filter( r => this.hasResponded(r)).length;
     }
     updateQuestionsCountCompletedInprogressDuring(): void {
         let count = this.getQuestionsCountCompletedInprogressDuring();
-        this.questionaire.questionStatus.count_completed_in_progress = count;
+        this.questionaire.questionCountCompletedInprogress = count;
     }
     updateQuestionsCountInprogress(): void {
         let count = this.getQuestionsCountInprogress();
-        this.questionaire.questionStatus.count_in_progress = count;
+        this.questionaire.questionCountInprogress = count;
     }
     // get number of questions completed in in-progress section
     getQuestionsCountCompletedInprogress(): number {
@@ -134,7 +134,7 @@ export class QuestionaireFacade {
     }
     updateQuestionsCountCompletedInprogress(): void {
         let count = this.getQuestionsCountCompletedInprogress();
-        this.questionaire.questionStatus.count_completed_in_progress = count;
+        this.questionaire.questionCountCompletedInprogress = count;
     }
     
     // get responses by section number
@@ -152,7 +152,7 @@ export class QuestionaireFacade {
     }
     // get current questions
     getQuestionsCurrent(): Question[] {
-        let section_num_current = this.questionaire.sectionStatus.num_current
+        let section_num_current = this.questionaire.sectionNumCurrent
         return this.getQuestionsBySection(section_num_current);
     }
     // update questions to ones of current section
@@ -161,7 +161,7 @@ export class QuestionaireFacade {
     }
     // update questions count of current section
     updateQuestionsCountCurrent(): void {
-        this.questionaire.questionStatus.count_current = this.getQuestionsCurrent().length;
+        this.questionaire.questionCountCurrent = this.getQuestionsCurrent().length;
     }
     // get questions count by section number
     getQuestionsCountBySection(section_num: number): number {
@@ -178,20 +178,20 @@ export class QuestionaireFacade {
     }
     updateQuestionsCountCompleted(): void {
         let count = this.getQuestionsCountCompleted();
-        this.questionaire.questionStatus.count_completed = count;
+        this.questionaire.questionCountCompleted = count;
     }
     // get number of questions completed in current section
     getQuestionsCountCompletedCurrent(): number {
-        return this.getQuestionsCountCompletedBySection(this.questionaire.sectionStatus.num_current);
+        return this.getQuestionsCountCompletedBySection(this.questionaire.sectionNumCurrent);
     }
     // update number of questions completed in current section
     updateQuestionsCountCompletedCurrent(): void {
         let count = this.getQuestionsCountCompletedCurrent();
-        this.questionaire.questionStatus.count_completed_current = count;
+        this.questionaire.questionCountCompletedCurrent = count;
     }
     // update number of completed questions in current section
     updateSectionCurrentCompleteCount(): void {
-        let section_current = this.getSectionByNum(this.questionaire.sectionStatus.num_current);
+        let section_current = this.getSectionByNum(this.questionaire.sectionNumCurrent);
         section_current.setQuestionsCountCompleted(this.getQuestionsCountCompletedCurrent());
     }
     // get number of sections completed
@@ -212,7 +212,7 @@ export class QuestionaireFacade {
     // update number of completed sections
     updateSectionsCountCompleted(): void {
         let count = this.getSectionsCountCompleted();
-        this.questionaire.sectionStatus.count_completed = count;
+        this.questionaire.sectionCountCompleted = count;
     }
     // HELPER METHODS
     /**
